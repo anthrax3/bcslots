@@ -1,0 +1,1239 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf440
+{\fonttbl\f0\fswiss\fcharset77 Arial-BoldMT;\f1\fswiss\fcharset77 ArialMT;\f2\fmodern\fcharset77 Courier;
+\f3\fmodern\fcharset77 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red0\green102\blue0;\red0\green0\blue0;
+}
+\margl1440\margr1440\vieww12800\viewh14680\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b\fs32 \cf0 ---------------------------------------------------------------------------\
+---------------------------------------------------------------------------\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 slot_machine
+\f1\b0\fs24  by Daniel Sadowski ({\field{\*\fldinst{HYPERLINK "mailto:info@bitemedia.com"}}{\fldrslt 
+\f0\b \cf2 info@bitemedia.com}})\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b\fs32 \cf0 ---------------------------------------------------------------------------\
+---------------------------------------------------------------------------\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f1\b0\fs28 \cf0 An all-vector, scaleable, slot machine game reminiscent of the old-style 1-payline, 3-reel, 6-icon machines.\
+\
+An XML configuration file controls:\
+* button colors (off, up, over states)\
+* individual sound effect levels (spin, stop, coin drop, handle pull, winner loop)\
+\
+It is possible to change the following within Flash:\
+* Payout amounts for each winning spin\
+* Payout odds by adjusting an array containing each reel's icon frequency. So for example, you could increase the likelihood of a '777' jackpot by increasing the number of 7s on each reel's icon array.\
+* The slot machine's vector reel icons\
+* The slot machine's 'skin'\
+* Money/Credit initial and reset amount\
+\
+The file uses a Flash-based Shared Object 'cookie' to store the user's score.
+\fs24 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+View the file in action here:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+{\field{\*\fldinst{HYPERLINK "http://www.bitemedia.com/slot_machine/"}}{\fldrslt 
+\f0\b \cf2 http://www.bitemedia.com/slot_machine/}}\
+\
+*Note:* this file is for fun only - because the payout amounts and winning spin odds could possibly be spoofed, the file should not be used in any type of prize give-away situation.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 All sound effects are licensed from AudioSparx:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+{\field{\*\fldinst{HYPERLINK "http://www.audiosparx.com/"}}{\fldrslt 
+\f0\b \cf2 http://www.audiosparx.com/}}\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b\fs28 \cf0 ----------------------------------------------------------------------\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 Included in the Zip file:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 ----------------------------------------------------------------------
+\f1\b0 \
+
+\f0\b \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\fs24 \cf0 Documentation:\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\fi560\ql\qnatural
+\cf0 slot_machine_readme.rtf
+\f1\b0  (the file you are reading now)\
+
+\f0\b slot_machine_readme.txt
+\f1\b0  (a plain text version of the file you are reading now)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+Flash Files:\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\fi560\ql\qnatural
+\cf0 slot_machine.fla
+\f1\b0  (Flash CS3 source file)\
+
+\f0\b slot_machine_f8.fla
+\f1\b0  (Flash 8 source file)
+\f0\b \
+slot_machine.swf
+\f1\b0  (.SWF file)\
+
+\f0\b slot_machine_config.xml
+\f1\b0  (XML config file)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+HTML, CSS and JavaScript Files:\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Upload these files along with your .SWF and XML files:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\fi560\ql\qnatural
+\cf0 \
+
+\f0\b index.html
+\f1\b0  (HTML index file)
+\f0\b \
+_styles/main.css 
+\f1\b0 (CSS file used in 
+\f0\b index.html
+\f1\b0 )\
+
+\f0\b swfobject.js
+\f1\b0  (SWFObject 2.0 JavaScript file used for embedding the .SWF)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+Tweener Class Files:\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 This folder contains the AS 2.0 Tweener Class files necessary for the any tweening animation used in the file. 
+\f0\b Note: 
+\f1\b0 This folder does not need to be uploaded to your server in order for the .SWF to function properly. However, if you are going to be editing the .FLA file, the 
+\f0\b caurina
+\f1\b0  folder plus all sub-folders need to be located in the same folder as your .FLA.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\fi560\ql\qnatural
+\cf0 caurina
+\f1\b0  folder\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+More information about the Tweener Class can be found here:\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+{\field{\*\fldinst{HYPERLINK "http://hosted.zeh.com.br/tweener/docs/en-us/"}}{\fldrslt 
+\f0\b \cf2 http://hosted.zeh.com.br/tweener/docs/en-us/}}\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+Park-Miller-Carta Pseudo-Random Number Generator Class Files:\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 This folder contains the AS 2.0 Park-Miller-Carta Pseudo-Random Number Generator Class files necessary for the random number generation used in the file. 
+\f0\b Note: 
+\f1\b0 This folder does not need to be uploaded to your server in order for the .SWF to function properly. However, if you are going to be editing the .FLA file, the 
+\f0\b de
+\f1\b0  folder plus all sub-folders need to be located in the same folder as your .FLA.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\fi560\ql\qnatural
+\cf0 de
+\f1\b0  folder\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+More information about the Michael Baczynski's implementation of the Park-Miller-Carta Pseudo-Random Number Generator Class can be found here:\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+{\field{\*\fldinst{HYPERLINK "http://lab.polygonal.de/2007/04/21/a-good-pseudo-random-number-generator-prng/"}}{\fldrslt 
+\f0\b \cf2 http://lab.polygonal.de/2007/04/21/a-good-pseudo-random-number-generator-prng/}}
+\f0\b \cf2 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f1\b0 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 More information about the Park-Miller-Carta Pseudo-Random Number Generator can be found here:\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+{\field{\*\fldinst{HYPERLINK "http://www.firstpr.com.au/dsp/rand31/"}}{\fldrslt 
+\f0\b \cf2 http://www.firstpr.com.au/dsp/rand31/}}\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b\fs28 \cf0 ----------------------------------------------------------------------\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 Modifying the Flash file:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 ----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0\fs24 \cf0 Changing some slot machine features requires opening and editing the .FLA:\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Changing the reel icons\
+----------------------------------------------------------------------
+\f1\b0 \
+- open the .FLA in Flash\
+- in the Library window open this folder: 
+\f0\b slot_machine/REELS/REEL Icons
+\f1\b0 \
+- you will see the following symbols:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 00-any \cf4 (used in the Payout Table)\cf3 \
+01-cherries\
+02-orange\
+03-plum\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf3 04-bell\
+05-bar\
+06-seven\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+Try to keep any new icons the same relative size as the current ones. The size of each reel window is 86 pixels wide by 106 pixels high so the new icon size should be limited to a maximum of 80 x 80 pixels.\
+\
+Using icons with more of a square aspect ratio is a good idea - icons that are too tall will make your reels look cramped.\
+\
+Like the rest of the graphic elements, the reel icons are vector-based. You could however use bitmap images or photos instead - just remember not to use scaling on your .SWF when embedding it in your HTML file or else your reel icons could look pixelated.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Changing the reel background color\
+----------------------------------------------------------------------
+\f1\b0 \
+- open the .FLA in Flash\
+- in the Library window open this folder: 
+\f0\b slot_machine/WINDOW Graphics
+\f1\b0 \
+- you will see the 
+\f0\b WINDOW_bg
+\f1\b0  symbol - adjusting this symbol will affect the background color of all 3 reels \
+\
+\
+\
+
+\f0\b Changing the slot machine's 'skin'\
+----------------------------------------------------------------------
+\f1\b0 \
+- open the .FLA in Flash\
+- in the Library window open this folder: 
+\f0\b slot_machine/SKIN
+\f1\b0 \
+- you will see the 
+\f0\b \'a5SKIN comp
+\f1\b0  symbol which is a composition of slot machine elements\
+\
+The 
+\f0\b 'stroke_reels' 
+\f1\b0 Layer contains the borders that outline the 3 reel windows. If you change the position of any of the reels (located on the 
+\f0\b slot_machine_mc
+\f1\b0  Timeline) you may need to adjust the position of these borders.\
+\
+The 
+\f0\b 'stroke_digital_display' 
+\f1\b0 Layer contains the borders that outline the 
+\f0\b CREDITS
+\f1\b0 , 
+\f0\b BET
+\f1\b0  and 
+\f0\b WINNER PAID
+\f1\b0  digital displays. If you change the number of digits in any of the digital displays (located on the 
+\f0\b slot_machine_mc
+\f1\b0  Timeline) you may need to adjust the width of these borders.\
+\
+\
+\
+
+\f0\b Changing the digital displays\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 If you'd like change the number of digits in any of the 3 digital displays (
+\f0\b money_counter_mc
+\f1\b0 , 
+\f0\b coins_played_mc
+\f1\b0 , 
+\f0\b payout_counter_mc
+\f1\b0 ):
+\f0\b \
+
+\f1\b0 \
+- in the Main Timeline, double-click on the 'slot_machine_mc' MovieClip (on the 'slot_machine' Layer)\
+- single-click on Frame 4 (labelled 'initMoney') of the 'Actions' Layer and open your Actions window\
+- change any of the 3 
+\f2 \cf3 .numbersMax 
+\f1 \cf0 variables to new values\
+- remember to adjust the borders that outline the 
+\f0\b CREDITS
+\f1\b0 , 
+\f0\b BET
+\f1\b0  and 
+\f0\b WINNER PAID
+\f1\b0  digital displays (see 
+\f0\b Changing the slot machine's 'skin'
+\f1\b0  above)\
+\
+You can also add a glow to any of the displays by changing its glow variables. However this could affect playback performance as there's a lot of other stuff going on - the default 
+\f2 \cf3 glowBlurRadius
+\f1 \cf0  is 0 which prevents any Glow from being applied at all):\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 .glowAlpha = 0; // set between 0 and 1 (0.5 is 50% opacity)\
+.glowBlurRadius = 0; // set between 0 and 255 (Values that are a power of 2 render faster)\
+.glowStrength = 0; // set between 0 and 255 (A setting between 0 and 1 usually looks best)\
+.glowQuality = 1; // set to 1 (low quality), 2 (medium quality), 3 (high quality)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1 \cf0 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Changing the Initial and Reset Money values\
+----------------------------------------------------------------------
+\f1\b0 \
+- in the Main Timeline, double-click on the 'slot_machine_mc' MovieClip (on the 'slot_machine' Layer)\
+- single-click on Frame 3 (labelled 'functions') of the 'Actions' Layer and open your Actions window\
+- on lines 79 through 80 you'll see:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 var moneyInit_num:Number = 100;\
+var moneyReset_num:Number = moneyInit_num;
+\f1 \cf0 \
+\
+Change these values to increase or decrease the initial and reset money values.\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Bitmap Caching\
+----------------------------------------------------------------------
+\f1\b0 \
+The slot machine's skin uses the Flash Player's 
+\f0\b cacheAsBitmap
+\f1\b0  property in order to improve playback performance. According to Adobe, \'c9"if set to true, Flash Player caches an internal bitmap representation of the movie clip. This can increase performance for movie clips that contain complex vector content\'c9"\
+\
+\
+\
+
+\f0\b Changing the Payout Table graphic\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 The Payout Table fades on when you click the 
+\f0\b PAY TABLE
+\f1\b0  button and displays the payouts for 1,2 and 3 coins played. The numbers are dynamic text fields that are automatically populated by the variables on line 87 through 94 of Frame 3 of the 'slot_machine_mc' MovieClip :\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 var payoutLevel_1_num:Number = 2;\
+var payoutLevel_2_num:Number = 5;\
+var payoutLevel_3_num:Number = 10;\
+var payoutLevel_4_num:Number = 12;\
+var payoutLevel_5_num:Number = 20;\
+var payoutLevel_6_num:Number = 50;\
+var payoutLevel_7_num:Number = 100;\
+var payoutLevel_8_num:Number = 250;
+\f1 \cf0 \
+\
+\'c9the 2nd coin column amount is double the corresponding 1st coin column amount while the 3rd coin column amount is triple the corresponding 1st coin column amount.\
+\
+The 'mini' icons displayed are scaled down versions of the full-size icons. So, if you have changed any of the icons but have retained the same relative size as the current ones and have not added new icons to the reels, then the Payout Table should take care of itself. If you'd like to change the look & feel/colors etc.:\
+\
+- in the Library window open this folder: 
+\f0\b slot_machine/PAY TABLE
+\f1\b0 \
+- you will see the 
+\f0\b \'a5PAY TABLE Comp
+\f1\b0  and 
+\f0\b paytable_BG 
+\f1\b0 symbols to edit\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Adding icons to each reel\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 It's possible to add icons to each reel so that there are more than 6 per reel but the process is complex. Newer versions of this file may make this process more user-friendly but for now this is the only way and requires some ActionScript knowledge. For example, to add a seventh icon to each reel:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Add a new reel icon symbol in the Library window
+\f1\b0 \
+- open the .FLA in Flash\
+- in the Library window open this folder: 
+\f0\b slot_machine/REELS/REEL Icons
+\f1\b0 \
+- duplicate the 
+\f0\b 06-seven
+\f1\b0  symbol and name it 
+\f0\b 07-new_icon\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 - import your new icon graphics into the 
+\f0\b 07-new_icon
+\f1\b0  symbol (remember to center it and keep its size similar to the other existing icons)
+\f0\b \
+
+\f1\b0 - in the Library window, right-click (Mac: control-click) on the new symbol and select 
+\f0\b Linkage\'c9
+\f1\b0  from the menu\
+- check the 
+\f0\b Export for ActionScript
+\f1\b0  checkbox and uncheck the 
+\f0\b Export in first frame
+\f1\b0  checkbox\
+- enter '
+\f0\b reel_icon_7'
+\f1\b0  into the 
+\f0\b Identifier
+\f1\b0  field then click 
+\f0\b OK\
+
+\f1\b0 - 
+\f0\b important: 
+\f1\b0 since the new symbol is not being exported in the first frame, you'll need to place it on the Stage somewhere so that it is actually included when the .SWF is compliled\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Change each reel's icon array
+\f1\b0 \
+- in the Main Timeline, double-click on the 'slot_machine_mc' MovieClip (on the 'slot_machine' Layer)\
+- single-click on Frame 3 (labelled 'functions') of the 'Actions' Layer and open your Actions window\
+- on lines 128 through 131 you'll see:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 // REEL ICON VALUES\
+var reel_1_icon_array:Array = new Array(6, 4, 3, 5, 2, 1);\
+var reel_2_icon_array:Array = new Array(6, 4, 5, 3, 2, 1);\
+var reel_3_icon_array:Array = new Array(6, 3, 2, 4, 1, 5);
+\f1 \cf0 \
+\
+A reference to the new seventh icon needs to be inserted into each array - the spinning reel 'tile' is generated based on these arrays. Adding a 
+\f2 \cf3 7
+\f1 \cf0  to the end of each array will add the new seventh icon to each reel 'tile' (each array 
+\f0\b must
+\f1\b0  contain the same number of items):\
+\
+
+\f2 \cf3 // REEL ICON VALUES\
+var reel_1_icon_array:Array = new Array(6, 4, 3, 5, 2, 1, 7);\
+var reel_2_icon_array:Array = new Array(6, 4, 5, 3, 2, 1, 7);\
+var reel_3_icon_array:Array = new Array(6, 3, 2, 4, 1, 5, 7);
+\f1 \cf0 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Change each reel's virtual icon weighting array
+\f1\b0 \
+These arrays control the probability of each reel landing on a particular icon (see 
+\f0\b Changing the payout percentage for the machine
+\f1\b0  below for an explanation of 
+\f0\b 'virtual reels'
+\f1\b0 ). The numbers in the arrays represent index positions from the 
+\f0\b reel icon arrays
+\f1\b0 . The greater the number of instances of one icon's index position, the greater the probability of the reel landing on that icon. So for example, if you look on line 135 of Frame 3 of the Main Timeline you'll see:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 \
+var reel_1_virtual_array:Array = new Array(1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 6, 6);\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1 \cf0 \
+The first two numbers in the array (
+\f2 \cf3 1, 1
+\f1 \cf0 ) represent position 1 in 
+\f2 \cf3 reel_1_icon_array
+\f1 \cf0 : icon 6, which is the 'Lucky 7' icon. Notice that the next twelve numbers are 
+\f2 \cf3 2
+\f1 \cf0 ,\cf3  \cf0 which represent position 2 in 
+\f2 \cf3 reel_1_icon_array
+\f1 \cf0 : icon 4, the 'Bell' icon. So, reel 1 is much more likely to land on the 'Bell' icon compared to the 'Lucky 7' icon.\
+\
+On lines 134 through 137 of Frame 3 of the Main Timeline, add one 
+\f2 \cf3 7
+\f1 \cf0  item to the end of the array (each array 
+\f0\b must
+\f1\b0  contain the same number of items):\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 // REEL ICON POSITION WEIGHTS\
+var reel_1_virtual_array:Array = new Array(1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 6, 6, 7);\
+var reel_2_virtual_array:Array = new Array(1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7);\
+var reel_3_virtual_array:Array = new Array(1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5, 5, 6, 7);
+\f1 \cf0 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Change the payout logic
+\f1\b0 \
+Payouts are determined by a series of if/then statements that check to see if the final positions of the reels match up. On Frame 3 of the Main Timeline, scroll down to view lines 306 through 379, the 
+\f0\b fncCheckPayout()
+\f1\b0  function. You'll need to add in a new if/then block and any new 
+\f2 \cf3 payoutLevel
+\f1 \cf0  variables.\
+\
+For example, add in a new 
+\f2 \cf3 payoutLevel
+\f1 \cf0  variable after line 94:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 var payoutLevel_9_num:Number = 250;
+\f1 \cf0 \
+\
+\'c9and change:\
+
+\f2 \cf3 var payoutLevels_num:Number = 8;\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1 \cf0 \'c9to:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 var payoutLevels_num:Number = 9;
+\f1 \cf0 \
+\
+Then add a new if/then block to check if each reel's final position has landed on your new icon (scroll down to 
+\f2 \cf3 // ICON 7: New Icon
+\f1 \cf0 ):\
+\
+
+\f2 \cf3 // --------------------------------------------------\
+// CHECK PAYOUT FUNCTION\
+// --------------------------------------------------\
+function fncCheckPayout():Void \{\
+	payoutCurrent_num = 0;\
+	payoutDisplay_num = payoutCurrent_num;\
+	fncSetPayoutDisplay(payoutCurrent_num);\
+	var whichIcon_1_num:Number = reel_1_icon_array[reelsCurrent_array[0] - 1];\
+	var whichIcon_2_num:Number = reel_2_icon_array[reelsCurrent_array[1] - 1];\
+	var whichIcon_3_num:Number = reel_3_icon_array[reelsCurrent_array[2] - 1];\
+	// ICON 1: Cherries\
+	if (whichIcon_1_num == 1) \{\
+		payoutCurrent_num += payoutLevel_1_num * coinsPlayedCurrent_num;\
+		sparkle_1_mc.sparkle_flag_bool = true;\
+		if (whichIcon_2_num == 1) \{\
+			payoutCurrent_num += (payoutLevel_2_num - payoutLevel_1_num) * coinsPlayedCurrent_num;\
+			sparkle_2_mc.sparkle_flag_bool = true;\
+			if (whichIcon_3_num == 1 || whichIcon_3_num == 5) \{\
+				payoutCurrent_num += (payoutLevel_3_num - payoutLevel_2_num) * coinsPlayedCurrent_num;\
+				sparkle_3_mc.sparkle_flag_bool = true;\
+			\}\
+		\}\
+		// ICON 2: Orange                                                                                                                                                                                                                                                                                                                                                                                                                                                      \
+	\} else if (whichIcon_1_num == 2) \{\
+		if (whichIcon_2_num == 2) \{\
+			if (whichIcon_3_num == 2 || whichIcon_3_num == 5) \{\
+				payoutCurrent_num = payoutLevel_4_num * coinsPlayedCurrent_num;\
+				sparkle_1_mc.sparkle_flag_bool = true;\
+				sparkle_2_mc.sparkle_flag_bool = true;\
+				sparkle_3_mc.sparkle_flag_bool = true;\
+			\}\
+		\}\
+		// ICON 3: Plum                                                                                                                                                                                                                                                                                                                                                                                                                                                       \
+	\} else if (whichIcon_1_num == 3) \{\
+		if (whichIcon_2_num == 3) \{\
+			if (whichIcon_3_num == 3 || whichIcon_3_num == 5) \{\
+				payoutCurrent_num = payoutLevel_5_num * coinsPlayedCurrent_num;\
+				sparkle_1_mc.sparkle_flag_bool = true;\
+				sparkle_2_mc.sparkle_flag_bool = true;\
+				sparkle_3_mc.sparkle_flag_bool = true;\
+			\}\
+		\}\
+		// ICON 4: Bell                                                                                                                                                                                                                                                                                                                                                                                                                                                      \
+	\} else if (whichIcon_1_num == 4) \{\
+		if (whichIcon_2_num == 4) \{\
+			if (whichIcon_3_num == 4 || whichIcon_3_num == 5) \{\
+				payoutCurrent_num = payoutLevel_6_num * coinsPlayedCurrent_num;\
+				sparkle_1_mc.sparkle_flag_bool = true;\
+				sparkle_2_mc.sparkle_flag_bool = true;\
+				sparkle_3_mc.sparkle_flag_bool = true;\
+			\}\
+		\}\
+		// ICON 5: Bar                                                                                                                                                                                                                                                                                                                                                                                                                                                      \
+	\} else if (whichIcon_1_num == 5) \{\
+		if (whichIcon_2_num == 5) \{\
+			if (whichIcon_3_num == 5) \{\
+				payoutCurrent_num = payoutLevel_7_num * coinsPlayedCurrent_num;\
+				sparkle_1_mc.sparkle_flag_bool = true;\
+				sparkle_2_mc.sparkle_flag_bool = true;\
+				sparkle_3_mc.sparkle_flag_bool = true;\
+			\}\
+		\}\
+		// ICON 6: Seven\
+	\} else if (whichIcon_1_num == 6) \{\
+		if (whichIcon_2_num == 6) \{\
+			if (whichIcon_3_num == 6) \{\
+				payoutCurrent_num = payoutLevel_8_num * coinsPlayedCurrent_num;\
+				sparkle_1_mc.sparkle_flag_bool = true;\
+				sparkle_2_mc.sparkle_flag_bool = true;\
+				sparkle_3_mc.sparkle_flag_bool = true;\
+			\}\
+		\}\
+		// ICON 7: New Icon\
+	\} else if (whichIcon_1_num == 7) \{\
+		if (whichIcon_2_num == 7) \{\
+			if (whichIcon_3_num == 7) \{\
+				payoutCurrent_num = payoutLevel_9_num * coinsPlayedCurrent_num;\
+				sparkle_1_mc.sparkle_flag_bool = true;\
+				sparkle_2_mc.sparkle_flag_bool = true;\
+				sparkle_3_mc.sparkle_flag_bool = true;\
+			\}\
+		\}\
+	\}\
+\}
+\f1 \cf0 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Change the Payout Table graphic
+\f1\b0 \
+Because you've added a new icon, you'll need to add a new row into the Payout Table graphic. The new row will need to contain scaled down versions of your new icon as well as 3 new dynamic text boxes for each 'coin played' column. They must be named 
+\f2 \cf3 payout_9_1
+\f1 \cf0 , 
+\f2 \cf3 payout_9_2
+\f1 \cf0  and 
+\f2 \cf3 payout_9_1\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1 \cf0 \
+See the '
+\f0\b Changing the Payout Table graphic' 
+\f1\b0 section above for more details.\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Changing payout amounts for each winning spin\
+----------------------------------------------------------------------
+\f1\b0 \
+- open the .FLA in Flash\
+- in the Main Timeline, double-click on the 'slot_machine_mc' MovieClip (on the 'slot_machine' Layer)\
+- single-click on Frame 3 (labelled 'functions') of the 'Actions' Layer and open your Actions window\
+- on lines 87 through 94 you'll see:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 var payoutLevel_1_num:Number = 2;\
+var payoutLevel_2_num:Number = 5;\
+var payoutLevel_3_num:Number = 10;\
+var payoutLevel_4_num:Number = 12;\
+var payoutLevel_5_num:Number = 20;\
+var payoutLevel_6_num:Number = 50;\
+var payoutLevel_7_num:Number = 100;\
+var payoutLevel_8_num:Number = 250;
+\f1 \cf0 \
+\
+\'c9these variable values correspond to the winning spins (from most likely to least likely):\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf0 Cherry----------[any]----------[any]\
+Cherry----------Cherry---------[any]\
+Cherry----------Cherry---------Cherry/Bar\
+Orange----------Orange---------Orange/Bar\
+Plum------------Plum-----------Plum/Bar\
+Bell------------Bell-----------Bell/Bar\
+Bar-------------Bar------------Bar\
+7---------------7--------------7
+\f1 \
+\
+\'c9if 2 coins are played, the payout is doubled and if 3 coins are played, the payout is tripled.\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Changing the payout percentage for the machine\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 The programming behind this file is based on how modern, computerized slot machines function. Before the late 1970s, a mechanical slot machine's spin results were based on the numerical distribution of icons on its reels. Back then, the only way for the casinos to profitably offer larger slot machine jackpots was to decrease the odds by adding more icons to the reels or adding more reels.\
+\
+There was a physical limit to the number of icons that could fit on each reel. In the late 1970s, a computerized 'virtual reel' system was developed by Bally so that an almost unlimited number of icons could be added to the reels without having to worry about running out of room.\
+\
+The 'virtual reels' contained numbers which corresponded to all of the possible spin outcomes, with more numbers being assigned to losing results. A random number generator program would cycle through all of the numbers and generate 3 at random when a coin was dropped into the machine - this determined where the reels would stop. The odds of winning spins and jackpots could be controlled precisely because of the reels' virtual nature.\
+\
+In Flash, arrays and a random number generator can be used to approximate this system. On lines 134 through 137 of Frame 3 of the Main Timeline, you can see the array used to store the icon weightings:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf3 // REEL ICON POSITION WEIGHTS\
+var reel_1_virtual_array:Array = new Array(1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 6, 6);\
+var reel_2_virtual_array:Array = new Array(1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6);\
+var reel_3_virtual_array:Array = new Array(1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5, 5, 6);
+\f1 \cf0 \
+\
+To calculate the payout percentage for this machine, count the instances of each icon on each reel:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf0 ---------------------REEL:\
+---------------------1------2-----3\
+\
+7--------------------2------3-----1\
+Bar------------------3-----11-----1\
+Bells---------------12------4-----1\
+Plums----------------8------2-----9\
+Oranges--------------2------6----14\
+Cherries-------------5------6-----6\
+\
+TOTAL---------------32-----32----32\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1 \cf0 \
+\
+So if my math is correct (and it could be way off - feel free to let me know), the total possible number of spin outcomes is 
+\f0\b 32 * 32 *32
+\f1\b0  or 
+\f0\b 32,768
+\f1\b0  and the frequency of winning spins is:
+\f2 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f3\b \cf0 7----------7---------7
+\f2\b0            happens 2  * 3  * 1      = 
+\f3\b 6    times
+\f2\b0 \
+
+\f3\b Bar--------Bar-------Bar 
+\f2\b0         happens 3  * 11 * 1      = 
+\f3\b 33   times
+\f2\b0 \
+
+\f3\b Bell-------Bell------Bell/Bar
+\f2\b0     happens 12 * 4  * (1+1)  = 
+\f3\b 96   times
+\f2\b0 \
+
+\f3\b Plum-------Plum------Plum/Bar
+\f2\b0     happens 8  * 2  * (9+1)  = 
+\f3\b 160  times
+\f2\b0 \
+
+\f3\b Orange-----Orange----Orange/Bar
+\f2\b0   happens 2  * 6  * (14+1) = 
+\f3\b 180  times
+\f2\b0 \
+
+\f3\b Cherry-----Cherry----Cherry/Bar
+\f2\b0   happens 5  * 6  * (6+1)  = 
+\f3\b 210  times
+\f2\b0 \
+
+\f3\b Cherry-----Cherry----[any]
+\f2\b0        happens 5  * 6  * 26     = 
+\f3\b 780  times
+\f2\b0 \
+
+\f3\b Cherry-----[any]-----[any]
+\f2\b0        happens 5  * 26 * 32     = 
+\f3\b 4160 times
+\f1\b0 \
+\
+So if the payouts are:
+\f0\b \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f3\b \cf0 7----------7---------7
+\f2\b0            250\
+
+\f3\b Bar--------Bar-------Bar 
+\f2\b0         100\
+
+\f3\b Bell-------Bell------Bell/Bar
+\f2\b0     50\
+
+\f3\b Plum-------Plum------Plum/Bar
+\f2\b0     20\
+
+\f3\b Orange-----Orange----Orange/Bar
+\f2\b0   12\
+
+\f3\b Cherry-----Cherry----Cherry/Bar
+\f2\b0   10\
+
+\f3\b Cherry-----Cherry----[any]
+\f2\b0        5\
+
+\f3\b Cherry-----[any]-----[any]
+\f2\b0        2\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1 \cf0 The total payout on 32,768 spins would be:
+\f0\b \
+
+\f1\b0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f3\b \cf0 6    x   250   =   1500\
+33   x   100   =   3300\
+96   x   50    =   4800\
+160  x   20    =   3200\
+180  x   12    =   2160\
+210  x   10    =   2100\
+780  x   5     =   3900\
+4160 x   2     =   8320\
+               ----------\
+                   29,280
+\f0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+And the payout percentage would be:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f3\b \cf0 (29,280  \'d6  32,768) * 100  =  \cf3 89.355 %\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+So in theory if you spun the reels 32,768 times, you would see a return of 89.355% of the coins you put in. By adjusting the reel weightings arrays on lines 134 through 137 of Frame 3 of the Main Timeline along with the payout variables on lines 87 through 94, you can increase or decrease the payout percentage for this machine.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b\fs28 \cf0 ----------------------------------------------------------------------\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 Modifying the XML file:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 ----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0\fs24 \cf0 By adjusting the values within the XML file, you can change the way the .SWF plays back. Make sure all of the tags are properly closed and that the values within the 
+\f0\b <globals>
+\f1\b0  tag are all enclosed in quote marks. One missing tag or character and the .SWF will not work properly.\
+\
+The location of the XML config file is passed as a variable (
+\f0\b config_file
+\f1\b0 ) by the 
+\f0\b index.html
+\f1\b0  file. To adjust this variable, open the 
+\f0\b index.html 
+\f1\b0 file and look for this line:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f2 \cf0 	var flashvars = \{\
+		config_file: "slot_machine_config.xml"\
+	\};
+\f1 \
+\
+	- change "slot_machine_config.xml" to your new path\
+	- for example, an absolute path such as "http://www.yoursite.com/xml/slot_machine_config.xml"\
+\
+\
+Alternately, if the 
+\f0\b config_file
+\f1\b0  variable is not passed from the 
+\f0\b index.html
+\f1\b0  file, the .SWF  is programmed to load the XML file located in the same folder. To change the path to the XML file:\
+\
+	- open the .FLA in Flash\
+	- in the Main Timeline, double-click on the '
+\f0\b slot_machine_mc
+\f1\b0 ' MovieClip (on the '
+\f0\b slot_machine
+\f1\b0 ' Layer)\
+	- single-click on 
+\f0\b Frame 2
+\f1\b0  of the '
+\f0\b Actions
+\f1\b0 ' Layer and open your Actions window\
+	- find this line of code:\
+\
+
+\f2 	// --------------------------------------------------\
+	// LOAD XML\
+	// --------------------------------------------------\
+	if (_level0.config_file) \{\
+		var config_str:String = _level0.config_file;\
+	\} else \{\
+		var config_str:String = "slot_machine_config.xml";\
+	\}\
+	data_xml.load(config_str);
+\f1 \
+\
+	- change "slot_machine_config.xml" to your new path\
+	- for example, an absolute path such as "http://www.yoursite.com/xml/slot_machine_config.xml"
+\f0\b \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 resetColourOff="0x505a64"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Reset button off state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 resetColourUp="0x008CE6"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Reset button up state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 resetColourOver="0x33CCFF"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Reset button over state Hex color\
+\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 betColourOff="0x5a3c32"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Bet button off state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 betColourUp="0xCC0000"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Bet button up state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 betColourOver="0xFF5033" \
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Bet button over state Hex color\
+\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 betmaxColourOff="0x5a3c32"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Bet Max button off state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 betmaxColourUp="0xCC0000"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Bet Max button up state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 betmaxColourOver="0xFF5033"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Bet Max button over state Hex color\
+\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 paytableColourOff="0x505a50"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Payout Table button off state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 paytableColourUp="0x00CC00"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Payout Tablebutton up state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 paytableColourOver="0x99FF00"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Payout Table button over state Hex color\
+\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 spinColourOff="0x505a50"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Spin button off state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 spinColourUp="0x00CC00"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Spin button up state Hex color\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 spinColourOver="0x99FF00"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Spin button over state Hex color\
+\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 numberColorOn="0xff3300"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Controls the Hex color of the digital score numbers. For example, with 
+\f0\b numberColorOn="0xff3300"
+\f1\b0 , the numbers would be a bright red.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 numberColorOff="0x330000"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Controls the Hex color of the 'unlit' areas of the digital score numbers. For example, with 
+\f0\b numberColorOff="0x330000"
+\f1\b0 , the 'unlit' areas would be a dark red.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 windowBgColor="0x141414"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Controls the Hex color of the digital score number background. For example, with 
+\f0\b windowBgColor="0x141414"
+\f1\b0 , the background of digital score numbers would be a dark grey.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 windowHiliteAlpha="40"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Controls the Alpha value (0 to 100) of the highlight on the digital score numbers.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 windowShadowAlpha="25"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Controls the Alpha value (0 to 100) of the shadow on the digital score numbers.\
+\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 soundFXon="true"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 set to "
+\f0\b true"
+\f1\b0 : sound effect plays each time a number flips into final position\
+set to "
+\f0\b false"
+\f1\b0 : sound effects off\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 spinSoundVolume="35"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Volume level percentage (0 to 100 %) of reels spinning sound effect\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 stopSoundVolume="35"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Volume level percentage (0 to 100 %) of reels stop sound effect\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 coinSoundVolume="60"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Volume level percentage (0 to 100 %) of coin drop sound effect\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 handleSoundVolume="50"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Volume level percentage (0 to 100 %) of handle pull sound effect\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 winnerSoundVolume="40"\
+----------------------------------------------------------------------\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 Volume level percentage (0 to 100 %) of winner loop sound effect\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+\
+-----------------------------------------------------------------\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 Tweener License
+\f1\b0  <{\field{\*\fldinst{HYPERLINK "http://code.google.com/p/tweener/wiki/License"}}{\fldrslt 
+\f0\b \cf2 http://code.google.com/p/tweener/wiki/License}}>\
+Tweener is free open source software, licensed under the MIT License <{\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/MIT_License"}}{\fldrslt 
+\f0\b \cf2 http://en.wikipedia.org/wiki/MIT_License}}>. Tweener also makes use of Robert Penner's easing equations <{\field{\*\fldinst{HYPERLINK "http://www.robertpenner.com/easing/"}}{\fldrslt 
+\f0\b \cf2 http://www.robertpenner.com/easing/}}>, which is also free open source software, licensed under the BSD License <{\field{\*\fldinst{HYPERLINK "http://www.opensource.org/licenses/bsd-license.php"}}{\fldrslt 
+\f0\b \cf2 http://www.opensource.org/licenses/bsd-license.php}}>.\
+\
+\
+
+\f0\b SWFObject License
+\f1\b0 \
+SWFObject v2.0 <{\field{\*\fldinst{HYPERLINK "http://code.google.com/p/swfobject/"}}{\fldrslt 
+\f0\b \cf2 http://code.google.com/p/swfobject/}}>\
+Copyright (c) 2007 Geoff Stearns, Michael Williams, and Bobby van der Sluis\
+This software is released under the MIT License <{\field{\*\fldinst{HYPERLINK "http://www.opensource.org/licenses/mit-license.php"}}{\fldrslt 
+\f0\b \cf2 http://www.opensource.org/licenses/mit-license.php}}>\
+\
+\
+-----------------------------------------------------------------\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\b \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0 \cf0 \
+\
+If you have any ideas on how to make this thing work better/more efficiently, feel free to contact me\'c9\
+\
+Daniel Sadowski.\
+\
+-----------------------------------------------------------------\
+\'a9 biteMedia, 2008\
+-----------------------------------------------------------------\
+biteMedia\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+{\field{\*\fldinst{HYPERLINK "http://www.bitemedia.com"}}{\fldrslt 
+\f0\b \cf2 http://www.bitemedia.com}}\
+-----------------------------------------------------------------\
+(416) 787-1808\
+-----------------------------------------------------------------\
+}
