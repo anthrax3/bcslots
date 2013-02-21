@@ -58,5 +58,9 @@ module BcslotsRails
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.blockchain_info.id = "da2f636a-a1c9-771e-000a-b9fbe0918487"
+    config.blockchain_info.password = "fuckyoublockchain"
+    config.blockchain_info.callback_originating_ip = "91.203.74.202"
   end
 end
