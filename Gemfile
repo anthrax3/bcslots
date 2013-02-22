@@ -8,6 +8,12 @@ gem 'rails', '3.2.12'
 gem 'sqlite3'
 
 gem 'resque'
+gem 'resque-retry'
+
+gem 'curb'
+
+gem "redis"
+gem "hiredis"
 
 
 # Gems used only for assets and not required
