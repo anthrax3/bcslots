@@ -59,6 +59,16 @@ module BcslotsRails
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.logging
+
+    config.jobs = ActiveSupport::OrderedOptions.new
+    config.jobs.new_addresses = ActiveSupport::OrderedOptions.new
+    config.jobs.new_addresses.queue_name = :new_addresses
+    config.jobs.new_addresses.buffer_size = 5
+    
+    config.redis = ActiveSupport::OrderedOptions.new
+    config.redis.uuid_address_list_name = "uuid-address"
+
     config.blockchain_info_id = "da2f636a-a1c9-771e-000a-b9fbe0918487"
     config.blockchain_info_password = "fuckyoublockchain"
     config.blockchain_info_callback_originating_ip = "91.203.74.202"
