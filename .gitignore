@@ -16,3 +16,5 @@
 
 .DS_Store
 RECOVER_slot_machine.fla
+appendonly.aof
+dump.rdb
