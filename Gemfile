@@ -7,6 +7,9 @@ gem 'rails', '3.2.12'
 
 gem 'sqlite3'
 
+gem 'bcslots-logic', :git => 'ssh://morhovich@morhovich.com/home/morhovich/bcslots-logic'
+gem 'safe_case', :git => 'ssh://morhovich@morhovich.com/home/morhovich/safe_case'
+
 gem 'resque'
 gem 'resque-retry'
 

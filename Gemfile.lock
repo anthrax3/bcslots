@@ -1,3 +1,16 @@
+GIT
+  remote: ssh://morhovich@morhovich.com/home/morhovich/bcslots-logic
+  revision: 846ae756c3ced280e6342bbba5b6396c61669deb
+  specs:
+    bcslots-logic (0.0.1)
+      safe_case
+
+GIT
+  remote: ssh://morhovich@morhovich.com/home/morhovich/safe_case
+  revision: dd1d46591a261010847477176c1a49c9d3424ec0
+  specs:
+    safe_case (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -150,6 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcslots-logic!
   coffee-rails (~> 3.2.1)
   curb
   hiredis
@@ -160,6 +174,7 @@ DEPENDENCIES
   redis
   resque
   resque-retry
+  safe_case!
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
