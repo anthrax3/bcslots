@@ -59,8 +59,6 @@ module BcslotsRails
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.logging
-
     config.jobs = ActiveSupport::OrderedOptions.new
     config.jobs.new_addresses = ActiveSupport::OrderedOptions.new
     config.jobs.new_addresses.queue_name = :new_addresses
