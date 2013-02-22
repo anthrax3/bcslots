@@ -12,10 +12,15 @@ gem 'resque-retry'
 
 gem 'curb'
 
-gem "redis"
-gem "hiredis"
+gem 'redis'
+gem 'hiredis'
 
+gem 'uuidtools'
 
+group :development do
+  gem 'pry'
+  gem 'pry-debugger'
+end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

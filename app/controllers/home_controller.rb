@@ -8,11 +8,12 @@ class HomeController < ApplicationController
     # ignore 4 for now
     # case 2 happens in between job queue enter and completion
     # if refresh, should make a new job and ignore last address, spamming server more? I say yes
-    # , to be a little simpler
+    # , to be a little simpler. Also, if redis is set for fsync/per second, a case could occur
+    # where the user has a uuid, but no address is saved. 
     r = Redis.new
     c = cookies[:uuid]
     if (c.nil? || r.get(c).nil?)
-      uuid = SecureRandom.uuid
+      uuid = UUIDTools::UUID.random_create.to_s
       cookies[:uuid] = {
         :value => uuid,
         :expires => 10.years.from_now
@@ -20,6 +21,19 @@ class HomeController < ApplicationController
       Resque.enqueue(NewAddressJob, uuid)
     end
   end
+
+  def show
+    uuid = UUIDTools::UUID.raw_string params[:id]
+    if (not uuid.valid?)
+      # do something!
+    end
+    r = Redis.new
+    address = r.get uuid
+    if (address.nil?)
+      #do something!
+    end
+  end
+
 end
 
 class NewAddressJob
