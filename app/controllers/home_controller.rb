@@ -1,46 +1,153 @@
 class HomeController < ApplicationController
+  @@cases = SafeCase.define
+  .condition(:index_with_no_cookie_set) do |args|
+    args[:method] == :index and
+    args[:cookie_id].nil?
+  end
+  .condition(:index_with_cookie_set_and_valid_address) do |args|
+    args[:method] == :index and
+    not args[:cookie_id].nil? and
+    not args[:cookie_address].nil?
+  end
+  .condition(:index_with_cookie_set_and_invalid_address) do |args|
+    args[:method] == :index and
+    not args[:cookie_id].nil? and
+    args[:cookie_address].nil?
+  end
+  .condition(:show_with_cookie_set_and_valid_address_and_matching_url_id) do |args|
+    args[:method] == :show and
+    not args[:cookie_id].nil? and
+    not args[:cookie_address].nil? and
+    args[:url_address] == args[:cookie_address]
+  end
+  .condition(:show_with_cookie_set_and_valid_address_and_not_matching_invalid_url_id) do |args|
+    args[:method] == :show and
+    not args[:cookie_id].nil? and
+    not args[:cookie_address].nil? and
+    args[:url_address] != args[:cookie_address] and
+    args[:url_id].nil?
+  end
+  .condition(:show_with_cookie_set_and_valid_address_and_not_matching_valid_url_id) do |args|
+    args[:method] == :show and
+    not args[:cookie_id].nil? and
+    not args[:cookie_address].nil? and
+    args[:url_address] != args[:cookie_address] and
+    not args[:url_id].nil?
+  end
+  .condition(:show_with_cookie_set_and_invalid_address_and_not_matching_invalid_url_id) do |args|
+    args[:method] == :show and
+    not args[:cookie_id].nil? and
+    args[:cookie_address].nil? and
+    args[:url_address] != args[:cookie_address] and
+    args[:url_id].nil?
+  end
+  .condition(:show_with_cookie_set_and_invalid_address_and_not_matching_valid_url_id) do |args|
+    args[:method] == :show and
+    not args[:cookie_id].nil? and
+    args[:cookie_address].nil? and
+    args[:url_address] != args[:cookie_address] and
+    not args[:url_id].nil?
+  end
+  .condition(:show_with_no_cookie_set_and_valid_url_id) do |args|
+    args[:method] == :show and
+    args[:cookie_id].nil? and
+    not args[:url_id].nil?
+  end
+  .last(:show_with_no_cookie_set_and_invalid_url_id) do |args|
+    args[:method] == :show and
+    args[:cookie_id].nil? and
+    not args[:url_id].nil?
+  end
+
+  @@outcomes = @@cases
+  .index_with_no_cookie_set do |args|
+    args[:generate_and_redirect].call
+  end
+  .index_with_cookie_set_and_valid_address do |args|
+    args[:redirect].call
+  end
+  .index_with_cookie_set_and_invalid_address do |args|
+    args[:generate_and_redirect].call
+  end
+  .show_with_cookie_set_and_valid_address_and_matching_url_id do |args|
+    args[:render].call
+  end
+  .show_with_cookie_set_and_valid_address_and_not_matching_invalid_url_id do |args|
+    args[:render].call
+  end
+  .show_with_cookie_set_and_valid_address_and_not_matching_valid_url_id do |args|
+    args[:render].call
+  end
+  .show_with_cookie_set_and_invalid_address_and_not_matching_invalid_url_id do |args|
+    args[:generate_and_redirect].call
+  end
+  .show_with_cookie_set_and_invalid_address_and_not_matching_valid_url_id do |args|
+    args[:set_cookie_and_render].call
+  end
+  .show_with_no_cookie_set_and_valid_url_id do |args|
+    args[:set_cookie_and_render].call
+  end
+  .show_with_no_cookie_set_and_invalid_url_id do |args|
+    args[:generate_and_redirect].call
+  end
+
   def index
-    r = Redis.new
-    uuid = cookies[:uuid]
-    if (uuid.nil?)
-      state_machine :visits_index_with_no_cookie_set, nil, nil
-      return
-    else
-      address = r.get uuid
-      if (not address.nil?)
-        state_machine :visits_index_with_cookie_set_and_valid_address, nil, nil
-        return
-      else
-        state_machine :visits_index_with_cookie_set_and_nil_address, nil, nil
-        return
-      end
+    r = Redis.new 
+
+    args = {}
+    args[:method] = :index
+    args[:cookie_id] = cookies[:uuid]
+    if not cookies[:uuid].nil?
+      args[:cookie_address] = r.get cookies[:uuid]
     end
+
+    args[:generate_and_redirect] = lambda do
+      uuid_address = r.lpop Rails.application.config.redis.uuid_address_list_name 
+      hash = JSON.parse(uuid_address)
+      r.set hash['uuid'], hash['address']
+      cookies[:uuid] = {:value => hash['uuid'], :expires => 10.years.from_now}
+      redirect_to "/#{cookies[:uuid]}"
+    end
+
+    args[:redirect] = lambda do
+      redirect_to :action => "show", :id => cookies[:uuid]
+    end
+
+    @@outcomes.call args
   end
 
   def show
-    r = Redis.new
-    uuid = cookies[:uuid]
-    address = r.get uuid
-    url_id = params[:id]
-    url_id_address = r.get url_id
+    r = Redis.new 
 
-    if (not uuid.nil? and not address.nil? and url_id == uuid)
-      state_machine :visits_show_with_cookie_set_and_valid_address_and_matching_url_id, url_id, address
-    elsif (not uuid.nil? and not address.nil? and url_id != uuid and url_id_address.nil?)
-      state_machine :visits_show_with_cookie_set_and_valid_address_and_not_matching_invalid_url_id, url_id, address
-    elsif (not uuid.nil? and not address.nil? and url_id != uuid and not url_id_address.nil?)
-      state_machine :visits_show_with_cookie_set_and_valid_address_and_not_matching_valid_url_id, url_id, address
-    elsif (not uuid.nil? and address.nil? and url_id == uuid)
-      state_machine :visits_show_with_cookie_set_and_invalid_address_and_matching_url_id, url_id, address
-    elsif (not uuid.nil? and address.nil? and url_id != uuid and url_id_address.nil?)
-      state_machine :visits_show_with_cookie_set_and_invalid_address_and_not_matching_invalid_url_id, url_id, address
-    elsif (not uuid.nil? and address.nil? and url_id != uuid and not url_id_address.nil?)
-      state_machine :visits_show_with_cookie_set_and_invalid_address_and_not_matching_valid_url_id, url_id, address
-    elsif ( uuid.nil? and not url_id_address.nil?)
-      state_machine :visits_show_with_no_cookie_set_and_valid_url_id, url_id, address
-    elsif ( uuid.nil? and url_id_address.nil?)
-      state_machine :visits_show_with_no_cookie_set_and_invalid_url_id, url_id, address
+    args = {}
+    args[:method] = :show
+    args[:cookie_id] = cookies[:uuid]
+    args[:url_id] = params[:id]
+    args[:url_address] = r.get args[:url_id]
+    if not cookies[:uuid].nil?
+      args[:cookie_address] = r.get cookies[:uuid]
     end
+
+
+
+    args[:generate_and_redirect] = lambda do
+      uuid_address = r.lpop Rails.application.config.redis.uuid_address_list_name 
+      hash = JSON.parse(uuid_address)
+      r.set hash["uuid"], hash["address"]
+      cookies[:uuid] = {:value => hash["uuid"], :expires => 10.years.from_now}
+      redirect_to :action => "show", :id => cookies[:uuid]
+    end
+
+    args[:render] = lambda do
+      @address = args[:cookie_address]
+    end
+
+    args[:set_cookie_and_render] = lambda do
+      cookies[:uuid] = {:value => args[:url_id], :expires => 10.years.from_now}
+      @address = args[:cookie_address]
+    end
+
+    @@outcomes.call args
   end
 
   def state_machine state,url_id, address
@@ -89,7 +196,7 @@ class HomeController < ApplicationController
     when :visits_show_with_no_cookie_set_and_valid_url_id
       cookies[:uuid] = {:value => url_id, :expires => 10.years.from_now}
       @address = r.get url_id
-    when :visits_show_with_no_cookie_set_and_invalid_url_id
+    when state == :visits_show_with_no_cookie_set_and_invalid_url_id
       uuid_address = r.lpop Rails.application.config.redis.uuid_address_list_name 
       hash = JSON.parse(uuid_address)
       r.set hash[:uuid], hash[:address]
