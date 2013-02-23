@@ -1,7 +1,7 @@
 class SpinController < ApplicationController
   respond_to :xml
   def show 
-    @reels = Reel.random_reels
+    @reels = Bcslots::Logic::Reels.new.random_reels
     Resque.enqueue(HelloJob, @reels)
     respond_with @reels
   end

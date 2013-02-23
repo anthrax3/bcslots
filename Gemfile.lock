@@ -1,15 +1,14 @@
 GIT
   remote: ssh://morhovich@morhovich.com/home/morhovich/bcslots-logic
-  revision: 846ae756c3ced280e6342bbba5b6396c61669deb
+  revision: 9a8d870940a574879337020e99162a747c94948d
   specs:
     bcslots-logic (0.0.1)
-      safe_case
 
 GIT
-  remote: ssh://morhovich@morhovich.com/home/morhovich/safe_case
-  revision: dd1d46591a261010847477176c1a49c9d3424ec0
+  remote: ssh://morhovich@morhovich.com/home/morhovich/super_simple_auth
+  revision: b39a1b8dc08667ea85d393d04141dff08ec856c8
   specs:
-    safe_case (0.0.1)
+    super_simple_auth (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -43,7 +42,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
-    coderay (1.0.8)
+    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -130,7 +129,7 @@ GEM
       rufus-scheduler
     rufus-scheduler (2.0.17)
       tzinfo (>= 0.3.23)
-    sass (3.2.5)
+    sass (3.2.6)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -174,8 +173,8 @@ DEPENDENCIES
   redis
   resque
   resque-retry
-  safe_case!
   sass-rails (~> 3.2.3)
   sqlite3
+  super_simple_auth!
   uglifier (>= 1.0.3)
   uuidtools
