@@ -5,6 +5,14 @@ GIT
     bcslots-logic (0.0.1)
 
 GIT
+  remote: ssh://morhovich@morhovich.com/home/morhovich/blockchain_info_rest_client
+  revision: 3dafdeacb5431a84e8976b7647bd7eeef03f58eb
+  specs:
+    blockchain_info_rest_client (0.0.1)
+      curb (~> 0.8.3)
+      json (~> 1.7)
+
+GIT
   remote: ssh://morhovich@morhovich.com/home/morhovich/super_simple_auth
   revision: b39a1b8dc08667ea85d393d04141dff08ec856c8
   specs:
@@ -163,6 +171,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcslots-logic!
+  blockchain_info_rest_client!
   coffee-rails (~> 3.2.1)
   curb
   hiredis
