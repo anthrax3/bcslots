@@ -3,6 +3,7 @@ BcslotsRails::Application.routes.draw do
   # first created -> highest priority.
   #
   match '/spin' => 'spin#show', :via => :get 
+  match '/blockchain_info_callback' => 'blockchain_info_callback#show', :via => :get 
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -51,7 +52,8 @@ BcslotsRails::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'home#index'
-  match ':id', :controller => 'home', :action => 'show'
+  match '/u', :controller => 'home', :action => 'index'
+  match '/u/:id', :controller => 'home', :action => 'show'
 
   # See how all your routes lay out with "rake routes"
 

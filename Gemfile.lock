@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: ssh://morhovich@morhovich.com/home/morhovich/blockchain_info_rest_client
-  revision: 3dafdeacb5431a84e8976b7647bd7eeef03f58eb
+  revision: 8160415cd9e6e905e6bcf325244bb7b6de13a04c
   specs:
     blockchain_info_rest_client (0.0.1)
       curb (~> 0.8.3)
