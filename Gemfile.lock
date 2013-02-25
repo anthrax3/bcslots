@@ -13,6 +13,12 @@ GIT
       json (~> 1.7)
 
 GIT
+  remote: ssh://morhovich@morhovich.com/home/morhovich/human_id
+  revision: 357e23294a4e04d4d57c59f8db89764e3e708484
+  specs:
+    human_id (0.0.1)
+
+GIT
   remote: ssh://morhovich@morhovich.com/home/morhovich/super_simple_auth
   revision: b39a1b8dc08667ea85d393d04141dff08ec856c8
   specs:
@@ -175,6 +181,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   curb
   hiredis
+  human_id!
   jquery-rails
   pry
   pry-debugger

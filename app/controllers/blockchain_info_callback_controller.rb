@@ -4,6 +4,6 @@ class BlockchainInfoCallbackController < ApplicationController
     'hi'
   end
   def show
-    handle_blockchain_info_callback {1 + 1}
+    handle_blockchain_info_callback {}
   end
 end

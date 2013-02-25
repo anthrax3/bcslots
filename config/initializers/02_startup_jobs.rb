@@ -1,4 +1,5 @@
 class NewAddressJob
+  extend HumanId
   @queue = Rails.application.config.jobs.new_addresses.queue_name 
   @retry_limit = -1
 
@@ -16,7 +17,7 @@ class NewAddressJob
       end
       response_data = JSON.parse(c.body_str)
       address = response_data["input_address"]
-      uuid = UUIDTools::UUID.random_create.to_s
+      uuid = generate_human_id
       Rails.logger.info "NewAddressJob: pushing uuid: #{uuid}, address: #{address} to #{uuid_address_list}."
       r.lpush uuid_address_list, {:uuid => uuid, :address => address}.to_json
       current_size = r.llen uuid_address_list

@@ -10,6 +10,7 @@ gem 'sqlite3'
 gem 'bcslots-logic', :git => 'ssh://morhovich@morhovich.com/home/morhovich/bcslots-logic'
 gem 'super_simple_auth', :git => 'ssh://morhovich@morhovich.com/home/morhovich/super_simple_auth'
 gem 'blockchain_info_rest_client', :git => 'ssh://morhovich@morhovich.com/home/morhovich/blockchain_info_rest_client'
+gem 'human_id', :git => 'ssh://morhovich@morhovich.com/home/morhovich/human_id'
 
 gem 'resque'
 gem 'resque-retry'
