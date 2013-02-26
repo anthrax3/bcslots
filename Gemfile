@@ -12,8 +12,10 @@ gem 'super_simple_auth', :git => 'ssh://morhovich@morhovich.com/home/morhovich/s
 gem 'blockchain_info_rest_client', :git => 'ssh://morhovich@morhovich.com/home/morhovich/blockchain_info_rest_client'
 gem 'human_id', :git => 'ssh://morhovich@morhovich.com/home/morhovich/human_id'
 
+gem 'pg'
 gem 'resque'
 gem 'resque-retry'
+gem 'foreigner'
 
 gem 'curb'
 
