@@ -1,10 +1,65 @@
+class IncomingDeposit
+  def transaction_type
+    'deposit'
+  end
+  end
+  def ids_dont_match!
+    raise 'ids don\'t match'
+  end
+  def addresses_dont_match!
+    raise 'addresses don\'t match'
+  end
+  def new_balance last_transaction_balance, change_in_balance
+    BigDecimal(last_transaction_balance.to_s) + BigDecimal(change_in_balance.to_s)
+  end
+  def when_last_transaction_nil id, timestamp, address, deposit_amount
+      {
+        'id' => id,
+        'address' => address,
+        'timestamp' => timestamp,
+        'credits' => credits,
+        'payout' => payout_in_credits,
+        'multiplier' => multiplier,
+        'transaction_type' => transaction_type,
+        'balance' => next_balance.to_s,
+        'reels' => reels,
+        'change_in_balance' => payout.to_s
+      } 
+  end
+  def call args
+    id = args['id']
+    timestamp = args['timestamp']
+    address = args['address']
+    amount  = args['deposit_amount']
 
-class Transaction
-  def initialize args
-    @balance = args[:balance]
-    @address = args[:address]
-    @id = args[:id]
-    @timestamp = args[:timestamp]
+    last_transaction = args['last_transaction']
+    last_id = last_transaction['id']
+    address = last_transaction['address']
+    last_transaction_balance = last_transaction['balance']
+    last_transaction_type = last_transaction['transaction_type']
+
+    payout_in_credits = reels_payout_in_credits reels, credits
+    payout = reels_payout_in_satoshis reels, credits
+    next_balance = new_balance last_transaction_balance, payout
+
+    if last_id != id)
+      ids_dont_match!
+    if last_id != id
+      ids_dont_match!
+    else
+      {
+        'id' => id,
+        'address' => address,
+        'timestamp' => timestamp,
+        'credits' => credits,
+        'payout' => payout_in_credits,
+        'multiplier' => multiplier,
+        'transaction_type' => transaction_type,
+        'balance' => next_balance.to_s,
+        'reels' => reels,
+        'change_in_balance' => payout.to_s
+      } 
+    end
   end
 end
 
