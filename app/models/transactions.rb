@@ -1,7 +1,9 @@
 class Transaction
-  attr_accessor :id
   def initialize id
-    self.id = id
+    @id = id
+  end
+  def id
+    @id
   end
   def list_name 
     "transactions_#{self.id}"
@@ -70,10 +72,15 @@ end
 
 
 class IncomingSpin
-  attr_accessor :id, :credits_bet
   def initialize id, credits_bet
-    self.id = id
-    self.credits_bet = credits_bet
+    @id = id
+    @credits_bet = credits_bet
+  end
+  def id
+    @id
+  end
+  def credits_bet
+    @credits_bet
   end
   def invariants_not_met
     raise 'implement'
@@ -82,7 +89,7 @@ class IncomingSpin
     raise 'implement'
   end
   def transaction
-    @transaction = Transaction.new id
+    @transaction ||= Transaction.new id
   end
   def at_least_one_deposit?
     transaction.at_least_one_deposit?
@@ -119,11 +126,11 @@ class IncomingSpin
   def amount_changing_in_satoshis reels
     combined_credit_outcome_to_satoshis_at_one_credit_per_bitcoin(reels) * multiplier
   end
-  def result_balance_in_satoshis
-    last_transaction_balance_in_satoshis - amount_changing_in_satoshis
+  def result_balance_in_satoshis reels
+    last_transaction_balance_in_satoshis - amount_changing_in_satoshis(reels)
   end
-  def result_balance_at_least_0?
-    result_balance_in_satoshis > 0
+  def result_balance_at_least_0_if_loses? 
+    result_balance_in_satoshis(reels) > 0
   end
   def credits_bet_valid?
     possible_credits_bet.include? credits_bet
