@@ -9,20 +9,20 @@
 
 reels = ['cherries', 'orange', 'plum', 'bell', 'bar', 'seven']
 
-reel_combinations = [
-  {'name' => 'cherries_cherries_cherries', 'weight' => 16, 'payout' => 10},
-  {'name' => 'cherries_cherries_bar',      'weight' => 16, 'payout' => 10},
-  {'name' => 'cherries_cherries_any',      'weight' => 32, 'payout' => 5},
-  {'name' => 'cherries_any_any',           'weight' => 64, 'payout' => 2},
-  {'name' => 'orange_orange_orange',       'weight' => 15, 'payout' => 12},
-  {'name' => 'orange_orange_bar',          'weight' => 15, 'payout' => 12},
-  {'name' => 'plum_plum_plum',             'weight' => 8,  'payout' => 20},
-  {'name' => 'plum_plum_bar',              'weight' => 8,  'payout' => 20},
-  {'name' => 'bell_bell_bell',             'weight' => 4,  'payout' => 50},
-  {'name' => 'bell_bell_bar',              'weight' => 4,  'payout' => 50},
-  {'name' => 'bar_bar_bar',                'weight' => 2,  'payout' => 100},
-  {'name' => 'seven_seven_seven',          'weight' => 1,  'payout' => 250},
-  {'name' => 'any_other',                  'weight' => 39, 'payout' => -1}
+conditional_reel_attributes = [
+  {'condition' => 'cherries cherries cherries', 'weight' => 16, 'payout' => 10},
+  {'condition' => 'cherries cherries bar',      'weight' => 16, 'payout' => 10},
+  {'condition' => 'cherries cherries any',      'weight' => 32, 'payout' => 5},
+  {'condition' => 'cherries any any',           'weight' => 64, 'payout' => 2},
+  {'condition' => 'orange orange orange',       'weight' => 15, 'payout' => 12},
+  {'condition' => 'orange orange bar',          'weight' => 15, 'payout' => 12},
+  {'condition' => 'plum plum plum',             'weight' => 8,  'payout' => 20},
+  {'condition' => 'plum plum bar',              'weight' => 8,  'payout' => 20},
+  {'condition' => 'bell bell bell',             'weight' => 4,  'payout' => 50},
+  {'condition' => 'bell bell bar',              'weight' => 4,  'payout' => 50},
+  {'condition' => 'bar bar bar',                'weight' => 2,  'payout' => 100},
+  {'condition' => 'seven seven seven',          'weight' => 1,  'payout' => 250},
+  {'condition' => 'any other',                  'weight' => 39, 'payout' => -1}
 ]
 
 def idempotent collection, field_name, ar_class
@@ -41,11 +41,11 @@ end
 idempotent reels, :reel, Reel
 
 
-reel_combinations.each do |rc|
-  not_exists = ReelCombination.where(:name => rc['name']).first.nil?
+conditional_reel_attributes.each do |rc|
+  not_exists = ConditionalReelAttribute.where(:condition => rc['condition']).first.nil?
   if not_exists
-    ar = ReelCombination.new
-    ar.name   = rc['name']
+    ar = ConditionalReelAttribute.new
+    ar.condition   = rc['condition']
     ar.weight = rc['weight']
     ar.payout = rc['payout']
     ar.save!
@@ -56,37 +56,37 @@ end
 reels.each do |first|
   reels.each do |second|
     reels.each do |third|
-      ar = ReelsReelCombination.new
+      ar = ReelCombination.new
       ar.first = Reel.where(:reel => first).first!
       ar.second = Reel.where(:reel => second).first!
       ar.third = Reel.where(:reel => third).first!
       r = [first.to_sym, second.to_sym, third.to_sym]
       if r == [:cherries, :cherries, :cherries]
-        ar.reel_combination = ReelCombination.where(:name => 'cherries_cherries_cherries').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'cherries cherries cherries').first!
       elsif reels == [:cherries, :cherries, :bar]
-        ar.reel_combination = ReelCombination.where(:name => 'cherries_cherries_bar').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'cherries cherries bar').first!
       elsif r[0..1] == [:cherries, :cherries]
-        ar.reel_combination = ReelCombination.where(:name => 'cherries_cherries_any').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'cherries cherries any').first!
       elsif r[0] == :cherries
-        ar.reel_combination = ReelCombination.where(:name => 'cherries_any_any').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'cherries any any').first!
       elsif r == [:orange, :orange, :orange]
-        ar.reel_combination = ReelCombination.where(:name => 'orange_orange_orange').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'orange orange orange').first!
       elsif r == [:orange, :orange, :bar]
-        ar.reel_combination = ReelCombination.where(:name => 'orange_orange_bar').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'orange orange bar').first!
       elsif r == [:plum, :plum, :plum]
-        ar.reel_combination = ReelCombination.where(:name => 'plum_plum_plum').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'plum plum plum').first!
       elsif r == [:plum, :plum, :bar]
-        ar.reel_combination = ReelCombination.where(:name => 'plum_plum_bar').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'plum plum bar').first!
       elsif r == [:bell, :bell, :bell]
-        ar.reel_combination = ReelCombination.where(:name => 'bell_bell_bell').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'bell bell bell').first!
       elsif r == [:bell, :bell, :bar]
-        ar.reel_combination = ReelCombination.where(:name => 'bell_bell_bar').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'bell bell bar').first!
       elsif r == [:bar, :bar, :bar]
-        ar.reel_combination = ReelCombination.where(:name => 'bar_bar_bar').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'bar bar bar').first!
       elsif r == [:seven, :seven, :seven]
-        ar.reel_combination = ReelCombination.where(:name => 'seven_seven_seven').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'seven seven seven').first!
       else
-        ar.reel_combination = ReelCombination.where(:name => 'any_other').first!
+        ar.conditional_reel_attribute = ConditionalReelAttribute.where(:condition => 'any other').first!
       end
       ar.save!
     end

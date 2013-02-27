@@ -4,5 +4,6 @@ class CreateReels < ActiveRecord::Migration
       t.string :reel
       t.timestamps
     end
+    add_index :reels, :reel, :unique => true
   end
 end

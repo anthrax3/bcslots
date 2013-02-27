@@ -1,19 +1,16 @@
 class CreateBets < ActiveRecord::Migration
   def change
     create_table :bets do |t|
-      t.integer, :credits
-      t.decimal, :multiplier
-      t.integer :first_id 
-      t.integer :second_id 
-      t.integer :third_id 
+      t.integer :credits
+      t.decimal :multiplier, :precision => 16, :scale => 8
+      t.integer :weight
+      t.integer :payout
       t.references :outstanding_balance
+      t.references :reel_combination
 
       t.timestamps
     end
-    add_index :bets, :user_id
     add_foreign_key :bets, :outstanding_balances
-    add_foreign_key(:reels_reel_combinations, :reels, column: 'first_id')
-    add_foreign_key(:reels_reel_combinations, :reels, column: 'second_id')
-    add_foreign_key(:reels_reel_combinations, :reels, column: 'third_id')
+    add_foreign_key :bets, :reel_combinations
   end
 end
