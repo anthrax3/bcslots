@@ -11,17 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226174855) do
+ActiveRecord::Schema.define(:version => 7) do
+
+  create_table "balance_change_types", :force => true do |t|
+    t.string   "change_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "balance_changes", :force => true do |t|
+    t.decimal  "balance",                :precision => 16, :scale => 8
+    t.decimal  "change",                 :precision => 16, :scale => 8
+    t.integer  "balance_change_type_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
+  end
+
+  add_index "balance_changes", ["user_id"], :name => "index_balance_changes_on_user_id"
 
   create_table "bets", :force => true do |t|
     t.integer  "credits"
-    t.decimal  "multiplier",             :precision => 16, :scale => 8
+    t.decimal  "multiplier",          :precision => 16, :scale => 8
     t.integer  "weight"
     t.integer  "payout"
-    t.integer  "outstanding_balance_id"
+    t.integer  "balance_change_id"
     t.integer  "reel_combination_id"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
   end
 
   create_table "conditional_reel_attributes", :force => true do |t|
@@ -33,16 +50,6 @@ ActiveRecord::Schema.define(:version => 20130226174855) do
   end
 
   add_index "conditional_reel_attributes", ["condition"], :name => "index_conditional_reel_attributes_on_condition", :unique => true
-
-  create_table "outstanding_balances", :force => true do |t|
-    t.decimal  "current",    :precision => 16, :scale => 8
-    t.decimal  "change",     :precision => 16, :scale => 8
-    t.integer  "user_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-  end
-
-  add_index "outstanding_balances", ["user_id"], :name => "index_outstanding_balances_on_user_id"
 
   create_table "reel_combinations", :force => true do |t|
     t.integer  "first_id"
@@ -72,10 +79,11 @@ ActiveRecord::Schema.define(:version => 20130226174855) do
 
   add_index "users", ["public_id"], :name => "index_users_on_public_id", :unique => true
 
-  add_foreign_key "bets", "outstanding_balances", :name => "bets_outstanding_balance_id_fk"
-  add_foreign_key "bets", "reel_combinations", :name => "bets_reel_combination_id_fk"
+  add_foreign_key "balance_changes", "balance_change_types", :name => "balance_changes_balance_change_type_id_fk"
+  add_foreign_key "balance_changes", "users", :name => "balance_changes_user_id_fk"
 
-  add_foreign_key "outstanding_balances", "users", :name => "outstanding_balances_user_id_fk"
+  add_foreign_key "bets", "balance_changes", :name => "bets_balance_change_id_fk"
+  add_foreign_key "bets", "reel_combinations", :name => "bets_reel_combination_id_fk"
 
   add_foreign_key "reel_combinations", "conditional_reel_attributes", :name => "reel_combinations_conditional_reel_attribute_id_fk"
   add_foreign_key "reel_combinations", "reels", :name => "reel_combinations_first_id_fk", :column => "first_id"
