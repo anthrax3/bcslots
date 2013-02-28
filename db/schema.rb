@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 7) do
     t.datetime "updated_at",                                         :null => false
   end
 
-  create_table "conditional_reel_attributes", :force => true do |t|
+  create_table "conditional_reel_combinations", :force => true do |t|
     t.string   "condition"
     t.integer  "payout"
     t.integer  "weight"
@@ -49,15 +49,15 @@ ActiveRecord::Schema.define(:version => 7) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "conditional_reel_attributes", ["condition"], :name => "index_conditional_reel_attributes_on_condition", :unique => true
+  add_index "conditional_reel_combinations", ["condition"], :name => "index_conditional_reel_combinations_on_condition", :unique => true
 
   create_table "reel_combinations", :force => true do |t|
     t.integer  "first_id"
     t.integer  "second_id"
     t.integer  "third_id"
-    t.integer  "conditional_reel_attribute_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.integer  "conditional_reel_combination_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "reel_combinations", ["first_id", "second_id", "third_id"], :name => "index_reel_combinations_on_first_id_and_second_id_and_third_id", :unique => true
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 7) do
   add_foreign_key "bets", "balance_changes", :name => "bets_balance_change_id_fk"
   add_foreign_key "bets", "reel_combinations", :name => "bets_reel_combination_id_fk"
 
-  add_foreign_key "reel_combinations", "conditional_reel_attributes", :name => "reel_combinations_conditional_reel_attribute_id_fk"
+  add_foreign_key "reel_combinations", "conditional_reel_combinations", :name => "reel_combinations_conditional_reel_combination_id_fk"
   add_foreign_key "reel_combinations", "reels", :name => "reel_combinations_first_id_fk", :column => "first_id"
   add_foreign_key "reel_combinations", "reels", :name => "reel_combinations_second_id_fk", :column => "second_id"
   add_foreign_key "reel_combinations", "reels", :name => "reel_combinations_third_id_fk", :column => "third_id"
