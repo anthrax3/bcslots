@@ -11,7 +11,6 @@ class NewAddressJob
 
     while (current_size < buffer_size) do
       Rails.logger.debug "NewAddressJob: #{current_size} available addresses."
-#      c = Curl.get("https://blockchain.info/api/receive?method=create&address=13wpvosrDc25KDbBGmj3sFA5EaoGzVi8hw&anonymous=false&callback=")
       
       response = generate_receiving_address
       puts "#{current_size} #{buffer_size}"
@@ -24,6 +23,7 @@ class NewAddressJob
       u = User.new
       u.public_id = generate_human_id
       u.address = response[:data][:input_address]
+      u.active = false
       u.save!
 
       current_size = User.where(:active => false).limit(buffer_size).count

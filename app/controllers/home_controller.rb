@@ -1,20 +1,19 @@
 class HomeController < ApplicationController
   include SuperSimpleAuth
   def generate_new_cookie_id args
-    r = Redis.new 
-    uuid_address = r.lpop Rails.application.config.redis.uuid_address_list_name 
-    hash = JSON.parse(uuid_address)
-    r.set hash['uuid'], hash['address']
-    hash['uuid']
+    u = User.an_inactive_user
+    u.active = true
+    u.save!
+    u.public_id
   end
   def render_show args
     @address = args[:cookie_state]
   end
   def get_cookie_state args
-    Redis.new.get args[:cookie_id]
+    User.where(:public_id => args[:cookie_id]).first.try(:address)
   end
   def get_param_state args
-    Redis.new.get args[:param_id]
+    User.where(:public_id => args[:param_id]).first.try(:address)
   end
   def index
     super_simple_auth_index
