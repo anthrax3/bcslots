@@ -1,10 +1,10 @@
 class CreateReelCombinations < ActiveRecord::Migration
   def change
     create_table :reel_combinations do |t|
-      t.integer :first_id 
-      t.integer :second_id 
-      t.integer :third_id 
-      t.references :conditional_reel_combination
+      t.integer :first_id, :null => false
+      t.integer :second_id, :null => false
+      t.integer :third_id, :null => false
+      t.references :conditional_reel_combination, :null => false
       t.timestamps
     end
     add_foreign_key(:reel_combinations, :reels, column: 'first_id')

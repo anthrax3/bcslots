@@ -14,21 +14,23 @@
 ActiveRecord::Schema.define(:version => 7) do
 
   create_table "balance_change_types", :force => true do |t|
-    t.string   "change_type"
+    t.string   "change_type", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "balance_change_types", ["change_type"], :name => "index_balance_change_types_on_change_type", :unique => true
+
   create_table "balance_changes", :force => true do |t|
-    t.decimal  "balance",                :precision => 16, :scale => 8
-    t.decimal  "change",                 :precision => 16, :scale => 8
-    t.integer  "balance_change_type_id"
-    t.integer  "user_id"
+    t.decimal  "balance",                :precision => 16, :scale => 8, :null => false
+    t.decimal  "change",                 :precision => 16, :scale => 8, :null => false
+    t.integer  "balance_change_type_id",                                :null => false
+    t.integer  "user_id",                                               :null => false
     t.datetime "created_at",                                            :null => false
     t.datetime "updated_at",                                            :null => false
   end
 
-  add_index "balance_changes", ["user_id"], :name => "index_balance_changes_on_user_id"
+  add_index "balance_changes", ["user_id", "balance_change_type_id"], :name => "index_balance_changes_on_user_id_and_balance_change_type_id"
 
   create_table "bets", :force => true do |t|
     t.integer  "credits"
@@ -41,10 +43,12 @@ ActiveRecord::Schema.define(:version => 7) do
     t.datetime "updated_at",                                         :null => false
   end
 
+  add_index "bets", ["balance_change_id"], :name => "index_bets_on_balance_change_id"
+
   create_table "conditional_reel_combinations", :force => true do |t|
-    t.string   "condition"
-    t.integer  "payout"
-    t.integer  "weight"
+    t.string   "condition",  :null => false
+    t.integer  "payout",     :null => false
+    t.integer  "weight",     :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -52,10 +56,10 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "conditional_reel_combinations", ["condition"], :name => "index_conditional_reel_combinations_on_condition", :unique => true
 
   create_table "reel_combinations", :force => true do |t|
-    t.integer  "first_id"
-    t.integer  "second_id"
-    t.integer  "third_id"
-    t.integer  "conditional_reel_combination_id"
+    t.integer  "first_id",                        :null => false
+    t.integer  "second_id",                       :null => false
+    t.integer  "third_id",                        :null => false
+    t.integer  "conditional_reel_combination_id", :null => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
   end
@@ -63,7 +67,7 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "reel_combinations", ["first_id", "second_id", "third_id"], :name => "index_reel_combinations_on_first_id_and_second_id_and_third_id", :unique => true
 
   create_table "reels", :force => true do |t|
-    t.string   "reel"
+    t.string   "reel",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -71,13 +75,14 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "reels", ["reel"], :name => "index_reels_on_reel", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "public_id"
-    t.string   "address"
-    t.boolean  "active"
+    t.string   "public_id",  :null => false
+    t.string   "address",    :null => false
+    t.boolean  "active",     :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "users", ["active", "public_id"], :name => "index_users_on_active_and_public_id", :unique => true
   add_index "users", ["public_id"], :name => "index_users_on_public_id", :unique => true
 
   add_foreign_key "balance_changes", "balance_change_types", :name => "balance_changes_balance_change_type_id_fk"

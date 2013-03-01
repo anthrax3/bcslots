@@ -8,7 +8,6 @@ class NewAddressJob
   def self.perform 
     buffer_size = Rails.application.config.jobs.new_addresses.buffer_size
     current_size = User.where(:active => false).limit(buffer_size).count
-    binding.pry
 
     while (current_size < buffer_size) do
       Rails.logger.debug "NewAddressJob: #{current_size} available addresses."
