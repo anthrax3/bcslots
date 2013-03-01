@@ -27,6 +27,8 @@ gem 'uuidtools'
 group :development do
   gem 'pry'
   gem 'pry-debugger'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
 end
 # Gems used only for assets and not required
 # in production environments by default.

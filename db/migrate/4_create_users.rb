@@ -3,6 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :public_id
       t.string :address
+      t.boolean :active
 
       t.timestamps
     end

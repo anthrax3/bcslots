@@ -39,6 +39,7 @@ end
 
 
 idempotent reels, :reel, Reel
+idempotent ['deposit', 'bet', 'withdrawal'], :change_type, BalanceChangeType
 
 
 conditional_reel_combinations.each do |rc|
@@ -92,3 +93,5 @@ reels.each do |first|
     end
   end
 end
+
+

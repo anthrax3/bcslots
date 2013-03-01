@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: ssh://morhovich@morhovich.com/home/morhovich/blockchain_info_rest_client
-  revision: 8160415cd9e6e905e6bcf325244bb7b6de13a04c
+  revision: da6aa793ff381ee9cab5010ef1956e5d6a669f7f
   specs:
     blockchain_info_rest_client (0.0.1)
       curb (~> 0.8.3)
@@ -55,6 +55,8 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -66,6 +68,7 @@ GEM
     coffee-script-source (1.4.0)
     columnize (0.3.6)
     curb (0.8.3)
+    debug_inspector (0.0.2)
     debugger (1.2.4)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
@@ -81,6 +84,7 @@ GEM
     hike (1.2.1)
     hiredis (0.4.5)
     i18n (0.6.1)
+    interception (0.3)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -102,6 +106,12 @@ GEM
     pry-debugger (0.2.1)
       debugger (~> 1.2.0)
       pry (~> 0.9.10)
+    pry-rescue (1.0.0)
+      interception (>= 0.3)
+      pry
+    pry-stack_explorer (0.4.9)
+      binding_of_caller (>= 0.7)
+      pry (~> 0.9.11)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -190,6 +200,8 @@ DEPENDENCIES
   pg
   pry
   pry-debugger
+  pry-rescue
+  pry-stack_explorer
   rails (= 3.2.12)
   redis
   resque
