@@ -25,12 +25,13 @@ ActiveRecord::Schema.define(:version => 7) do
     t.decimal  "balance",                :precision => 16, :scale => 8, :null => false
     t.decimal  "change",                 :precision => 16, :scale => 8, :null => false
     t.integer  "balance_change_type_id",                                :null => false
+    t.integer  "next_id"
     t.integer  "user_id",                                               :null => false
     t.datetime "created_at",                                            :null => false
     t.datetime "updated_at",                                            :null => false
   end
 
-  add_index "balance_changes", ["user_id", "balance_change_type_id"], :name => "index_balance_changes_on_user_id_and_balance_change_type_id"
+  add_index "balance_changes", ["user_id", "next_id"], :name => "index_balance_changes_on_user_id_and_next_id", :unique => true
 
   create_table "bets", :force => true do |t|
     t.integer  "credits"
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "users", ["public_id"], :name => "index_users_on_public_id", :unique => true
 
   add_foreign_key "balance_changes", "balance_change_types", :name => "balance_changes_balance_change_type_id_fk"
+  add_foreign_key "balance_changes", "balance_changes", :name => "balance_changes_next_id_fk", :column => "next_id"
   add_foreign_key "balance_changes", "users", :name => "balance_changes_user_id_fk"
 
   add_foreign_key "bets", "balance_changes", :name => "bets_balance_change_id_fk"

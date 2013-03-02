@@ -1,6 +1,6 @@
 class NewAddressJob
   extend HumanId
-  extend BlockchainInfoRestClient::RubyOnRails::GenerateReceivingAddress
+  extend BlockchainInfoRestClient::Rails::GenerateReceivingAddress
 
   @queue = Rails.application.config.jobs.queue_name 
   @retry_limit = -1
