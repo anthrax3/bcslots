@@ -25,6 +25,11 @@ conditional_reel_combinations = [
   {'condition' => 'any other',                  'weight' => 39, 'payout' => -1}
 ]
 
+m = Multiplier.first_or_initialize
+m.multiplier = 0.007
+m.save!
+
+
 def idempotent collection, field_name, ar_class
   collection.each do |c|
     not_exists = ar_class.where(field_name => c).first.nil?
@@ -62,6 +67,8 @@ reels.each do |first|
       ar.second = Reel.where(:reel => second).first!
       ar.third = Reel.where(:reel => third).first!
       r = [first.to_sym, second.to_sym, third.to_sym]
+      not_exists = ReelCombination.find_by_reels([first, second, third]).first.nil?
+      next unless not_exists
       if r == [:cherries, :cherries, :cherries]
         ar.conditional_reel_combination = ConditionalReelCombination.where(:condition => 'cherries cherries cherries').first!
       elsif reels == [:cherries, :cherries, :bar]

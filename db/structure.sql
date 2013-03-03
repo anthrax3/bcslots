@@ -101,9 +101,9 @@ ALTER SEQUENCE balance_changes_id_seq OWNED BY balance_changes.id;
 CREATE TABLE bets (
     id integer NOT NULL,
     credits integer,
-    multiplier numeric(16,8),
-    weight integer,
-    payout integer,
+    current_multiplier numeric(16,8),
+    current_weight integer,
+    current_payout integer,
     balance_change_id integer,
     reel_combination_id integer,
     created_at timestamp without time zone NOT NULL,
@@ -161,6 +161,37 @@ CREATE SEQUENCE conditional_reel_combinations_id_seq
 --
 
 ALTER SEQUENCE conditional_reel_combinations_id_seq OWNED BY conditional_reel_combinations.id;
+
+
+--
+-- Name: multipliers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE multipliers (
+    id integer NOT NULL,
+    multiplier numeric(16,8),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: multipliers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE multipliers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: multipliers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE multipliers_id_seq OWNED BY multipliers.id;
 
 
 --
@@ -302,6 +333,13 @@ ALTER TABLE ONLY conditional_reel_combinations ALTER COLUMN id SET DEFAULT nextv
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY multipliers ALTER COLUMN id SET DEFAULT nextval('multipliers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY reel_combinations ALTER COLUMN id SET DEFAULT nextval('reel_combinations_id_seq'::regclass);
 
 
@@ -352,6 +390,14 @@ ALTER TABLE ONLY conditional_reel_combinations
 
 
 --
+-- Name: multipliers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY multipliers
+    ADD CONSTRAINT multipliers_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: reel_combinations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -383,17 +429,17 @@ CREATE UNIQUE INDEX index_balance_change_types_on_change_type ON balance_change_
 
 
 --
+-- Name: index_balance_changes_constrain_next_id_to_one_null; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_balance_changes_constrain_next_id_to_one_null ON balance_changes USING btree (user_id, (COALESCE(next_id, 0)));
+
+
+--
 -- Name: index_balance_changes_on_user_id_and_next_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_balance_changes_on_user_id_and_next_id ON balance_changes USING btree (user_id, next_id);
-
-
---
--- Name: index_balance_changes_on_user_id_and_next_id_with_one_null; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX index_balance_changes_on_user_id_and_next_id_with_one_null ON balance_changes USING btree (user_id, (COALESCE(next_id, (-1))));
 
 
 --
@@ -536,3 +582,5 @@ INSERT INTO schema_migrations (version) VALUES ('6');
 INSERT INTO schema_migrations (version) VALUES ('7');
 
 INSERT INTO schema_migrations (version) VALUES ('8');
+
+INSERT INTO schema_migrations (version) VALUES ('9');
