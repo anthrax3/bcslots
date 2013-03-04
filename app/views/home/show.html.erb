@@ -5,6 +5,9 @@
 <title>Main</title>
 <script type="text/javascript" src="/swfobject.js"></script>
 <script type="text/javascript">
+        function getIdFromCookie() {
+          return $.cookie('id');
+        };
 
 	var flashvars = {
                 config_file: "<%= asset_path 'slot_machine_config.xml' %>"

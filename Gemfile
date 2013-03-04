@@ -23,6 +23,7 @@ gem 'redis'
 gem 'hiredis'
 
 gem 'uuidtools'
+gem 'jquery-cookie-rails'
 
 group :development do
   gem 'pry'

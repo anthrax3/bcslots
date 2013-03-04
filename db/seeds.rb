@@ -25,7 +25,7 @@ conditional_reel_combinations = [
   {'condition' => 'any other',                  'weight' => 39, 'payout' => -1}
 ]
 
-allowed_bets = [0.001, 0.01, 0.03, 0.15]
+allowed_bets = [0.1, 0.2, 0.3, 0.01, 0.02, 0.03, 0.001, 0.002, 0.003]
 
 
 def idempotent collection, field_name, ar_class
