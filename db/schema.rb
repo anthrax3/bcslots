@@ -13,13 +13,19 @@
 
 ActiveRecord::Schema.define(:version => 8) do
 
-  create_table "balance_change_types", :force => true do |t|
-    t.string   "change_type", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "allowed_bets", :force => true do |t|
+    t.decimal  "allowed_bet", :precision => 16, :scale => 8
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
-  add_index "balance_change_types", ["change_type"], :name => "index_balance_change_types_on_change_type", :unique => true
+  create_table "balance_change_types", :force => true do |t|
+    t.string   "balance_change_type", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "balance_change_types", ["balance_change_type"], :name => "index_balance_change_types_on_balance_change_type", :unique => true
 
   create_table "balance_changes", :force => true do |t|
     t.decimal  "balance",                :precision => 16, :scale => 8, :null => false
@@ -34,14 +40,12 @@ ActiveRecord::Schema.define(:version => 8) do
   add_index "balance_changes", ["user_id", "next_id"], :name => "index_balance_changes_on_user_id_and_next_id", :unique => true
 
   create_table "bets", :force => true do |t|
-    t.integer  "credits"
-    t.decimal  "current_multiplier",  :precision => 16, :scale => 8
     t.integer  "current_weight"
     t.integer  "current_payout"
     t.integer  "balance_change_id"
     t.integer  "reel_combination_id"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   add_index "bets", ["balance_change_id"], :name => "index_bets_on_balance_change_id"
@@ -55,12 +59,6 @@ ActiveRecord::Schema.define(:version => 8) do
   end
 
   add_index "conditional_reel_combinations", ["condition"], :name => "index_conditional_reel_combinations_on_condition", :unique => true
-
-  create_table "multipliers", :force => true do |t|
-    t.decimal  "multiplier", :precision => 16, :scale => 8
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-  end
 
   create_table "reel_combinations", :force => true do |t|
     t.integer  "first_id",                        :null => false

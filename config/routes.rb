@@ -2,7 +2,7 @@ BcslotsRails::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   #
-  match '/spin' => 'spin#show', :via => :get 
+  match '/spin' => 'spin#create', :via => :post
   match '/blockchain_info_callback' => 'blockchain_info_callback#show', :via => :get 
 
   # Sample of regular route:

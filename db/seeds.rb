@@ -25,9 +25,7 @@ conditional_reel_combinations = [
   {'condition' => 'any other',                  'weight' => 39, 'payout' => -1}
 ]
 
-m = Multiplier.first_or_initialize
-m.multiplier = 0.007
-m.save!
+allowed_bets = [0.001, 0.01, 0.03, 0.15]
 
 
 def idempotent collection, field_name, ar_class
@@ -44,7 +42,8 @@ end
 
 
 idempotent reels, :reel, Reel
-idempotent ['deposit', 'bet', 'withdrawal'], :change_type, BalanceChangeType
+idempotent ['deposit', 'bet', 'withdrawal'], :balance_change_type, BalanceChangeType
+idempotent allowed_bets, :allowed_bet, AllowedBet
 
 
 conditional_reel_combinations.each do |rc|

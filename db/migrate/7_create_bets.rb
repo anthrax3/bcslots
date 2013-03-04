@@ -1,8 +1,6 @@
 class CreateBets < ActiveRecord::Migration
   def change
     create_table :bets do |t|
-      t.integer :credits
-      t.decimal :current_multiplier, :precision => 16, :scale => 8
       t.integer :current_weight
       t.integer :current_payout
       t.references :balance_change
