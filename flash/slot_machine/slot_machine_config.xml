@@ -13,6 +13,10 @@
 	betmaxColourUp="0xCC0000" 
 	betmaxColourOver="0xFF5033" 
 	
+	changevalueColourOff="0x5a3c32" 
+	changevalueColourUp="0xCC0000" 
+	changevalueColourOver="0xFF5033" 
+
 	paytableColourOff="0x505a50" 
 	paytableColourUp="0x00CC00" 
 	paytableColourOver="0x99FF00" 
