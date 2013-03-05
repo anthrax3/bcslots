@@ -28,7 +28,8 @@ class SpinService
       end
 
       any_other = ConditionalReelCombination.where(:condition => 'any other').first!
-      if (bc.balance + any_other.payout * bet.to_d) < 0
+      balance_before_payout = bc.balance + any_other.payout * bet.to_d
+      if balance_before_payout < 0
         return {:error => 'balance too low for bet', :balance => bc.balance.to_s}
       end
 
@@ -40,6 +41,7 @@ class SpinService
 
       next_bc = BalanceChange.new
       next_bc.balance_change_type = BalanceChangeType.where(:balance_change_type => 'bet').first!
+      #TODO: check stats again
       next_bc.change = conditional_reel_combination.payout * bet.to_d
       next_bc.balance = bc.balance + next_bc.change
       next_bc.user_id = bc.user_id
@@ -53,7 +55,7 @@ class SpinService
 
       next_bc.save!
       bc.save!
-      {:balance => next_bc.balance.to_s, :reels => reels}
+      {:balance => next_bc.balance.to_s, :reels => reels, :payout => next_bc.change.to_s, :balance_before_payout => balance_before_payout}
     end
   end
 end

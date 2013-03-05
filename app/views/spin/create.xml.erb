@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data>
+<data
   <% if @data[:error] %>
-    <error><%= @data[:error] %></error>
-  <% else %>
-    <reels>
-      <reel><%= @data[:reels][0] %></reel>
-      <reel><%= @data[:reels][1] %></reel>
-      <reel><%= @data[:reels][2] %></reel>
-    </reels>
+    error="<%= @data[:error] %>"
+  <% end %>
+  <% if @data[:payout] %>
+    payout="<%= @data[:payout] %>"
+  <% end %>
+  <% if @data[:reels] %>
+    reel1="<%= @data[:reels][0] %>"
+    reel2="<%= @data[:reels][1] %>"
+    reel3="<%= @data[:reels][2] %>"
   <% end %>
   <% if @data[:balance] %>
-    <balance><%= @data[:balance]  %></balance>
+    balance="<%= @data[:balance] %>"
   <% end %>
+  <% if @data[:balance_before_payout] %>
+    balance_before_payout="<%= @data[:balance_before_payout] %>"
+  <% end %>
+>
 </data>

@@ -9,6 +9,10 @@
           return $.cookie('id');
         };
 
+        function getBalance() {
+          return <%= @data[:balance] %>;
+        };
+
 	var flashvars = {
                 config_file: "<%= asset_path 'slot_machine_config.xml' %>"
 	};
@@ -32,7 +36,7 @@
 </head>
 <body style="background-color:#FFF; background-image:url('<%= asset_path 'background.png' %>');">
   <div style="background-color:#2D2D2D; width:100%; height:29px; font-size: 13px; line-height:27px; font-family:arial, sans-serif; color:#FFF; font-weight:bold; text-align:center">
-    <%= @address %>
+    <%= @data[:address] %>
   </div>
 <div id="flashcontent">
 	<div id="altcontent">

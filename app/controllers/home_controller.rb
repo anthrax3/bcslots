@@ -7,7 +7,9 @@ class HomeController < ApplicationController
     u.public_id
   end
   def render_show args
-    @address = args[:cookie_state]
+    @data = {}
+    @data[:address] = args[:cookie_state]
+    @data[:balance] = BalanceChange.newest_for_user_with_public_id(args[:cookie_id].to_s).pluck('balance').try(:first).try(:to_s)
   end
   def get_cookie_state args
     User.where(:public_id => args[:cookie_id]).first.try(:address)
