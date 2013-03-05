@@ -9,10 +9,13 @@ class SpinService
   def get_random_reels
     Bcslots::Logic::Reels.new.random_reels
   end
+  def get_allowed_bets
+    AllowedBet.pluck(:allowed_bet)
+  end
   def record_spin public_id, bet
     ActiveRecord::Base.transaction do
-      if not AllowedBet.pluck(:allowed_bet).include? bet.to_d
-        raise 'invalid bet amount'
+      if not get_allowed_bets.include? bet.to_d
+        return {:error => 'invalid bet amount'}
       end
 
       bc = BalanceChange
@@ -21,12 +24,12 @@ class SpinService
       .first
 
       if bc.nil?
-        raise 'no desposit'
+        return {:error => 'no previous deposit', :balance => BigDecimal(0.to_s).to_s}
       end
 
       any_other = ConditionalReelCombination.where(:condition => 'any other').first!
       if (bc.balance + any_other.payout * bet.to_d) < 0
-        raise 'balance too low for bet'
+        return {:error => 'balance too low for bet', :balance => bc.balance.to_s}
       end
 
       reels = get_random_reels

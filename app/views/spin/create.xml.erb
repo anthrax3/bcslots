@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
-  <reels>
-    <reel><%= @data[:reels][0] %></reel>
-    <reel><%= @data[:reels][1] %></reel>
-    <reel><%= @data[:reels][2] %></reel>
-  </reels>
-  <balance><%= @data[:balance]  %></balance>
+  <% if @data[:error] %>
+    <error><%= @data[:error] %></error>
+  <% else %>
+    <reels>
+      <reel><%= @data[:reels][0] %></reel>
+      <reel><%= @data[:reels][1] %></reel>
+      <reel><%= @data[:reels][2] %></reel>
+    </reels>
+  <% end %>
+  <% if @data[:balance] %>
+    <balance><%= @data[:balance]  %></balance>
+  <% end %>
 </data>
