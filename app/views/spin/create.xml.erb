@@ -14,11 +14,26 @@
   <% if @data[:balance] %>
     balance="<%= @data[:balance] %>"
   <% end %>
+  <% if @data[:balance_in_dBTC] %>
+    balance_in_dBTC="<%= @data[:balance_in_dBTC] %>"
+  <% end %>
+  <% if @data[:balance_in_cBTC] %>
+    balance_in_cBTC="<%= @data[:balance_in_cBTC] %>"
+  <% end %>
+  <% if @data[:balance_in_mBTC] %>
+    balance_in_mBTC="<%= @data[:balance_in_mBTC] %>"
+  <% end %>
   <% if @data[:previous_balance] %>
     previous_balance="<%= @data[:previous_balance] %>"
   <% end %>
-  <% if @data[:balance_before_payout] %>
-    balance_before_payout="<%= @data[:balance_before_payout] %>"
+  <% if @data[:balance_before_payout_in_dBTC] %>
+    balance_before_payout_in_dBTC="<%= @data[:balance_before_payout_in_dBTC] %>"
   <% end %>
->
+  <% if @data[:balance_before_payout_in_cBTC] %>
+    balance_before_payout_in_cBTC="<%= @data[:balance_before_payout_in_cBTC] %>"
+  <% end %>
+  <% if @data[:balance_before_payout_in_mBTC] %>
+    balance_before_payout_in_mBTC="<%= @data[:balance_before_payout_in_mBTC] %>"
+  <% end %>
+  >
 </data>
