@@ -9,8 +9,16 @@
           return $.cookie('id');
         };
 
-        function getBalance() {
-          return <%= @data[:balance] %>;
+        function balance_in_dBTC() {
+          return <%= @data[:balance_in_dBTC] %>;
+        };
+
+        function balance_in_cBTC() {
+          return <%= @data[:balance_in_cBTC] %>;
+        };
+
+        function balance_in_mBTC() {
+          return <%= @data[:balance_in_mBTC] %>;
         };
 
 	var flashvars = {
