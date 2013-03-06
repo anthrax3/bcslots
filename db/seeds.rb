@@ -10,19 +10,19 @@
 reels = ['cherries', 'orange', 'plum', 'bell', 'bar', 'seven']
 
 conditional_reel_combinations = [
-  {'condition' => 'cherries cherries cherries', 'weight' => 16, 'payout' => 10},
-  {'condition' => 'cherries cherries bar',      'weight' => 16, 'payout' => 10},
-  {'condition' => 'cherries cherries any',      'weight' => 32, 'payout' => 5},
-  {'condition' => 'cherries any any',           'weight' => 64, 'payout' => 2},
-  {'condition' => 'orange orange orange',       'weight' => 15, 'payout' => 12},
-  {'condition' => 'orange orange bar',          'weight' => 15, 'payout' => 12},
-  {'condition' => 'plum plum plum',             'weight' => 8,  'payout' => 20},
-  {'condition' => 'plum plum bar',              'weight' => 8,  'payout' => 20},
-  {'condition' => 'bell bell bell',             'weight' => 4,  'payout' => 50},
-  {'condition' => 'bell bell bar',              'weight' => 4,  'payout' => 50},
-  {'condition' => 'bar bar bar',                'weight' => 2,  'payout' => 100},
-  {'condition' => 'seven seven seven',          'weight' => 1,  'payout' => 250},
-  {'condition' => 'any other',                  'weight' => 39, 'payout' => -1}
+  {'condition' => 'cherries cherries cherries', 'weight' => 16, 'payout' => 9},
+  {'condition' => 'cherries cherries bar',      'weight' => 16, 'payout' => 9},
+  {'condition' => 'cherries cherries any',      'weight' => 32, 'payout' => 4},
+  {'condition' => 'cherries any any',           'weight' => 64, 'payout' => 1},
+  {'condition' => 'orange orange orange',       'weight' => 15, 'payout' => 11},
+  {'condition' => 'orange orange bar',          'weight' => 15, 'payout' => 11},
+  {'condition' => 'plum plum plum',             'weight' => 8,  'payout' => 19},
+  {'condition' => 'plum plum bar',              'weight' => 8,  'payout' => 19},
+  {'condition' => 'bell bell bell',             'weight' => 4,  'payout' => 49},
+  {'condition' => 'bell bell bar',              'weight' => 4,  'payout' => 49},
+  {'condition' => 'bar bar bar',                'weight' => 2,  'payout' => 99},
+  {'condition' => 'seven seven seven',          'weight' => 1,  'payout' => 249},
+  {'condition' => 'any other',                  'weight' => 25, 'payout' => -1}
 ]
 
 allowed_bets = [0.1, 0.2, 0.3, 0.01, 0.02, 0.03, 0.001, 0.002, 0.003]

@@ -6,6 +6,32 @@ class SpinController < ApplicationController
 end
 
 class SpinService
+  def number_of_positions
+    ActiveRecord::Base.connection
+    .execute('select sum(weight) from reel_combinations rc join conditional_reel_combinations crc on crc.id = rc.conditional_reel_combination_id;')
+    .first["sum"]
+    .to_i
+  end
+  def reels_and_payout_from_position position
+    query = <<-q
+      select first, second, third, payout from
+       (select payout,
+               first.reel  as first,
+               second.reel as second,
+               third.reel  as third,
+               sum(weight) over (order by rc.id) - weight as min,
+               sum(weight) over (order by rc.id) - 1      as max
+        from reel_combinations rc
+        join conditional_reel_combinations crc on crc.id = rc.conditional_reel_combination_id
+        join reels first  on first.id  = rc.first_id
+        join reels second on second.id = rc.second_id
+        join reels third  on third.id  = rc.third_id
+       ) q
+      where min <= ? and ? <= max 
+    q
+    result = ReelCombination.find_by_sql([query, position, position]).first.attributes
+    {:payout => result['payout'], :reels => [result['first'], result['second'], result['third']]}
+  end
   def get_random_reels
     Bcslots::Logic::Reels.new.random_reels
   end
@@ -55,7 +81,7 @@ class SpinService
 
       next_bc.save!
       bc.save!
-      {:balance => next_bc.balance.to_s, :reels => reels, :payout => next_bc.change.to_s, :balance_before_payout => balance_before_payout}
+      {:previous_balance => bc.balance.to_s, :balance => next_bc.balance.to_s, :reels => reels, :payout => next_bc.change.to_s, :balance_before_payout => balance_before_payout.to_s}
     end
   end
 end
