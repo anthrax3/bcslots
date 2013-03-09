@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "allowed_bets", :force => true do |t|
-    t.decimal  "allowed_bet", :precision => 16, :scale => 8
+    t.decimal  "allowed_bet", :precision => 16, :scale => 8, :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
   end
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(:version => 8) do
   add_index "balance_changes", ["user_id", "next_id"], :name => "index_balance_changes_on_user_id_and_next_id", :unique => true
 
   create_table "bets", :force => true do |t|
-    t.integer  "current_weight"
-    t.integer  "current_payout"
-    t.integer  "balance_change_id"
-    t.integer  "reel_combination_id"
+    t.integer  "current_weight",      :null => false
+    t.integer  "current_payout",      :null => false
+    t.integer  "balance_change_id",   :null => false
+    t.integer  "reel_combination_id", :null => false
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(:version => 8) do
   end
 
   add_index "conditional_reel_combinations", ["condition"], :name => "index_conditional_reel_combinations_on_condition", :unique => true
+
+  create_table "deposits", :force => true do |t|
+    t.string   "transaction_hash",       :null => false
+    t.string   "input_transaction_hash", :null => false
+    t.integer  "confirmations",          :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
 
   create_table "reel_combinations", :force => true do |t|
     t.integer  "first_id",                        :null => false
@@ -88,6 +96,7 @@ ActiveRecord::Schema.define(:version => 8) do
   end
 
   add_index "users", ["active", "public_id"], :name => "index_users_on_active_and_public_id", :unique => true
+  add_index "users", ["address"], :name => "index_users_on_address", :unique => true
   add_index "users", ["public_id"], :name => "index_users_on_public_id", :unique => true
 
   add_foreign_key "balance_changes", "balance_change_types", :name => "balance_changes_balance_change_type_id_fk"

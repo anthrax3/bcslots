@@ -1,10 +1,10 @@
 class CreateBets < ActiveRecord::Migration
   def change
     create_table :bets do |t|
-      t.integer :current_weight
-      t.integer :current_payout
-      t.references :balance_change
-      t.references :reel_combination
+      t.integer :current_weight, :null => false
+      t.integer :current_payout, :null => false
+      t.references :balance_change, :null => false
+      t.references :reel_combination, :null => false
 
       t.timestamps
     end

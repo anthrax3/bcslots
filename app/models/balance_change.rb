@@ -2,6 +2,7 @@ class BalanceChange < ActiveRecord::Base
   belongs_to :user
   belongs_to :balance_change_type
   has_one :bet
+  has_one :deposit
   belongs_to :next,  :class_name =>  'BalanceChange', :foreign_key => 'next_id'
   #  attr_accessible :change, :current
   #

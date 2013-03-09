@@ -66,6 +66,7 @@ module BcslotsRails
     
     config.blockchain_info_rest_client = ActiveSupport::OrderedOptions.new
     config.blockchain_info_rest_client.address = '13wpvosrDc25KDbBGmj3sFA5EaoGzVi8hw'
+    config.blockchain_info_rest_client.secret_token = 'hi'
     config.blockchain_info_rest_client.anonymous = false
     config.blockchain_info_rest_client.callback_address = 'http://www.google.com'
   end
