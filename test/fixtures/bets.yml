@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  current: 
-  change: 
-  user: 
+#one:
+#  current: 
+#  change: 
+#  user: 
 
-two:
-  current: 
-  change: 
-  user: 
+#two:
+#  current: 
+#  change: 
+#  user: 

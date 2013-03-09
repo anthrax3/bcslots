@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  change_type: MyString
+  balance_change_type: MyStrins
 
 two:
-  change_type: MyString
+  balance_change_type: MyString
