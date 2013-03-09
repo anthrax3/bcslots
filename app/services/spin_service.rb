@@ -41,7 +41,7 @@ class SpinService
   def allowed_bets
     AllowedBet.pluck(:allowed_bet)
   end
-  def record_spin public_id, credits, credit_value
+  def execute public_id, credits, credit_value
     ActiveRecord::Base.transaction do
       if not [1,2,3].include? credits.to_i
         return {:error => 'invalid credits'}
@@ -62,7 +62,7 @@ class SpinService
       end
 
       any_other = ConditionalReelCombination.where(:condition => 'any other').first!
-      balance_before_payout = bc.balance + any_other.payout * bet.to_d
+      balance_before_payout = bc.balance.to_d + any_other.payout.to_i * bet.to_d
       if balance_before_payout < 0
         return {:error => 'balance too low for bet', :balance => bc.balance.to_s}
       end
@@ -71,13 +71,13 @@ class SpinService
 
       next_bc = BalanceChange.new
       next_bc.balance_change_type = BalanceChangeType.where(:balance_change_type => 'bet').first!
-      next_bc.change = result[:payout] * bet.to_d
-      next_bc.balance = bc.balance + next_bc.change
+      next_bc.change = result[:payout].to_i * bet.to_d
+      next_bc.balance = bc.balance.to_d + next_bc.change.to_d
       next_bc.user_id = bc.user_id
 
       next_bc.bet = Bet.new
-      next_bc.bet.current_payout = result[:payout]
-      next_bc.bet.current_weight = result[:weight]
+      next_bc.bet.current_payout = result[:payout].to_i
+      next_bc.bet.current_weight = result[:weight].to_i
       next_bc.bet.reel_combination_id = result[:reel_combination_id]
 
       bc.next = next_bc
@@ -85,13 +85,13 @@ class SpinService
       next_bc.save!
       bc.save!
       {
-       :previous_balance => bc.balance.to_s, 
-       :balance => next_bc.balance.to_s,
+       :previous_balance => bc.balance.to_d.to_s, 
+       :balance => next_bc.balance.to_d.to_s,
        :balance_in_dBTC => (next_bc.balance * 10).to_i.to_s,
        :balance_in_cBTC => (next_bc.balance * 100).to_i.to_s,
        :balance_in_mBTC => (next_bc.balance * 1000).to_i.to_s,
        :reels => result[:reels],
-       :payout => next_bc.change.to_s,
+       :payout => next_bc.change.to_d.to_s,
        :balance_before_payout_in_dBTC => (balance_before_payout * 10).to_i.to_s,
        :balance_before_payout_in_cBTC => (balance_before_payout * 100).to_i.to_s,
        :balance_before_payout_in_mBTC => (balance_before_payout * 1000).to_i.to_s

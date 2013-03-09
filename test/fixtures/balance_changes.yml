@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-#one:
-#  current: 
-#  change: 
-#  user: 
-#
-#two:
-#  current: 
-#  change: 
-#  user: 
+first_deposit_for_a_user_with_one_bitcoin:
+  balance: 1.0
+  change: 1.0
+  user: user_with_one_deposit_of_one_bitcoin
+  balance_change_type_id: <%= BalanceChangeType.where(:balance_change_type => 'deposit').first!.id %>
