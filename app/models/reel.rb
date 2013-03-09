@@ -1,3 +1,5 @@
 class Reel < ActiveRecord::Base
-  # attr_accessible :title, :body
+  after_commit do
+    Rails.cache.delete ReelCombination.reel_combinations_cache_key
+  end
 end

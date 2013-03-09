@@ -4,8 +4,6 @@ class BalanceChange < ActiveRecord::Base
   has_one :bet
   has_one :deposit
   belongs_to :next,  :class_name =>  'BalanceChange', :foreign_key => 'next_id'
-  #  attr_accessible :change, :current
-  #
   def self.newest_for_user_with_public_id public_id
     self
     .joins(:user)
