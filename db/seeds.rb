@@ -66,7 +66,12 @@ reels.each do |first|
       ar.second = Reel.where(:reel => second).first!
       ar.third = Reel.where(:reel => third).first!
       r = [first.to_sym, second.to_sym, third.to_sym]
-      not_exists = ReelCombination.find_by_reels([first, second, third]).first.nil?
+      not_exists = ReelCombination
+      .where(:first_id => ar.first.id)
+      .where(:second_id => ar.second.id)
+      .where(:third_id => ar.third.id)
+      .first
+      .nil?
       next unless not_exists
       if r == [:cherries, :cherries, :cherries]
         ar.conditional_reel_combination = ConditionalReelCombination.where(:condition => 'cherries cherries cherries').first!

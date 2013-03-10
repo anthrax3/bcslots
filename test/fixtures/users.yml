@@ -1,5 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+user_with_no_deposits:
+  public_id: zs38329
+  address: 2QM4xFoQY8WVES8oSZ4MDzsHRhyETykWXh 
+  active: true
+
 user_with_one_deposit_of_one_bitcoin:
   public_id: me8420s
   address: 1Pm4xFoQY8WVES8oSZ4MDzsHRhyETykWXh 

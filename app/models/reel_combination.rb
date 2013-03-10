@@ -5,7 +5,7 @@ class ReelCombination < ActiveRecord::Base
   belongs_to :conditional_reel_combination
 
   after_commit do
-    Rails.cache.write ReelCombination.reel_combinations_cache_key, self
+    Rails.cache.delete ReelCombination.reel_combinations_cache_key
   end
 
   def self.weighted_reel_combinations_cache_key

@@ -170,6 +170,7 @@ GEM
       rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
     slop (3.4.3)
+    spin (0.6.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -212,6 +213,7 @@ DEPENDENCIES
   resque
   resque-retry
   sass-rails (~> 3.2.3)
+  spin
   sqlite3
   super_simple_auth!
   uglifier (>= 1.0.3)

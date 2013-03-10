@@ -7,7 +7,7 @@ class AllowedBet < ActiveRecord::Base
   end
   def self.allowed_bets
     Rails.cache.fetch(allowed_bets_cache_key) do
-      AllowedBets.pluck(:allowed_bet)
+      AllowedBet.pluck(:allowed_bet)
     end
   end
 end
