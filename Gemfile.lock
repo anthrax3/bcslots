@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: ssh://morhovich@morhovich.com/home/morhovich/super_simple_auth
-  revision: b39a1b8dc08667ea85d393d04141dff08ec856c8
+  revision: bd4bbf8294685eb3e3990a6ff4913ab3520b2f8e
   specs:
     super_simple_auth (0.0.1)
 
