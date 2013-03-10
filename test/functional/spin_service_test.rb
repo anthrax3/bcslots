@@ -4,7 +4,7 @@ class SpinServiceTest < ActiveSupport::TestCase
   test 'does not allow invalid credits' do
     user = users(:user_with_no_deposits)
     bet = AllowedBet.allowed_bets.first
-    [0,4,5,6,-1,-2,-3,'a''hi',{:a => :malicious}].each do |credits|
+    ['0', '4' ,'5' ,'6','-1', '-2', '-3' , 'a', 'hi', '{:a => :malicious}'].each do |credits|
       r = SpinService.new.execute user.public_id, credits, bet
       assert (not r[:error].nil?)
       assert user.balance_changes.count == 0
@@ -14,7 +14,7 @@ class SpinServiceTest < ActiveSupport::TestCase
   test 'does not allow invalid bet values' do
     user = users(:user_with_no_deposits)
     bet = AllowedBet.allowed_bets.first
-    [0.to_f.to_d, 0.4.to_d, 0.5, 6,-0.2.to_d,-3.0.to_d,'a''hi',{:a => :malicious}].each do |credits|
+    ['0', '0.4', '0.5', '6', '-0.2', '-3.0', 'a', 'hi', '{:a => :malicious}'].each do |credits|
       r = SpinService.new.execute user.public_id, credits, bet
       assert (not r[:error].nil?)
       assert user.balance_changes.count == 0

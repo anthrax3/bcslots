@@ -8,7 +8,7 @@ class SpinService
   end
   def execute public_id, credits, bet_value
     ActiveRecord::Base.transaction do
-      if (not credits.is_a? Fixnum) || (not [1,2,3].include? credits.to_i)
+      if (not [1,2,3].include? credits.to_i)
         return {:error => 'invalid credits'}
       end
       if not AllowedBet.pluck(:allowed_bet).include? bet_value.to_d

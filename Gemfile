@@ -13,8 +13,6 @@ gem 'blockchain_info_rest_client', :git => 'ssh://morhovich@morhovich.com/home/m
 gem 'human_id', :git => 'ssh://morhovich@morhovich.com/home/morhovich/human_id'
 
 gem 'pg'
-gem 'resque'
-gem 'resque-retry'
 gem 'foreigner'
 
 gem 'curb'
