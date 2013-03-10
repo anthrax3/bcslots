@@ -99,7 +99,7 @@ class SpinServiceTest < ActiveSupport::TestCase
       def lowest_possible_balance_before_payout x, y
         0
       end
-      def get_random_reels_and_cont x, y
+      def get_random_reel_combination x, y
         :called
       end
     end
@@ -120,21 +120,30 @@ class SpinServiceTest < ActiveSupport::TestCase
     assert s.lowest_possible_balance_before_payout(BigDecimal('7.0'), BigDecimal('4.0')).to_s == '0.0'
   end
 
-  test 'get_random_reels' do
-    r = SpinService.new.get_random_reels
+  test 'get_weighted_reel_combinations' do
+    r = SpinService.new.get_weighted_reel_combinations.first
     assert (not r[:reels].nil?)
     assert (not r[:payout].nil?)
     assert (not r[:weight].nil?)
+    assert (not r[:id].nil?)
   end
 
-  test 'get_random_reels_and_cont' do
+  test 'get_random_reel_combination' do
     s = SpinService.new
     class << s
-      def write_to_db x, y, z
-        :done
+      def write_to_db x,y,z
+        z
       end
+      def random_number x
+        0
+      end
+      def get_weighted_reel_combinations
+        [:rc]
+      end
+
     end
-    assert :done == s.get_random_reels_and_cont(BigDecimal('1.0'), BigDecimal('1.0'))
+    r = s.get_random_reel_combination nil, nil
+    assert r == :rc
   end
 
   test 'bet_balance_change_type' do
@@ -146,6 +155,12 @@ class SpinServiceTest < ActiveSupport::TestCase
   end
 
   test'write_to_db' do
+    bc = balance_changes(:first_deposit_for_a_user_with_one_bitcoin)
+    user = users(:user_with_one_deposit_of_one_bitcoin)
+    s = SpinService.new
+    rc = {:id => 1, :reels => ['cherries', 'cherries', 'cherries'], :payout => '2', :weight => '1'}
+    s.write_to_db BigDecimal('2.0'), bc, rc
+    newest = user.balance_changes[1]
   end
 
   test 'output_values' do

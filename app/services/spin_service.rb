@@ -58,7 +58,7 @@ class SpinService
     if lowest < 0
       lowest_possible_balance_too_low_return_value
     else
-      get_random_reels_and_cont total_bet, balance_change
+      get_random_reel_combination total_bet, balance_change
     end
   end
   def lowest_possible_balance_too_low_return_value
@@ -67,13 +67,13 @@ class SpinService
   def lowest_possible_balance_before_payout total_bet, balance
     value_of_losing_bet(total_bet) + balance
   end
-  def get_random_reels
-    r = ReelCombination.weighted_reel_combinations
-    r[random_number(r.length)]
+  def get_weighted_reel_combinations
+    ReelCombination.weighted_reel_combinations
   end
-  def get_random_reels_and_cont total_bet, balance_change
-    reels = get_random_reels
-    write_to_db total_bet, balance_change, reels
+  def get_random_reel_combination total_bet, balance_change
+    rcs = get_weighted_reel_combinations
+    rc = rcs[random_number(rcs.length)]
+    write_to_db total_bet, balance_change, rc
   end
   def bet_balance_change_type
     BalanceChangeType.balance_change_types.find{|x| x.balance_change_type == 'bet'}
@@ -81,26 +81,28 @@ class SpinService
   def change_in_balance total_bet, payout
     total_bet.to_d * payout.to_i
   end
-  def write_to_db total_bet, balance_change, reels
+  def write_to_db total_bet, balance_change, reel_combination
     ActiveRecord::Base.transaction do
 
+      bc = balance_change
       next_bc = BalanceChange.new
-      next_bc.balance_change_type = balance_change_type
-      next_bc.change = change_in_balance(total_bet, reels[:payout])
+      next_bc.balance_change_type = bet_balance_change_type
+      next_bc.change = change_in_balance(total_bet, reel_combination[:payout])
       next_bc.balance = bc.balance.to_d + next_bc.change.to_d
       next_bc.user_id = bc.user_id
 
       next_bc.bet = Bet.new
-      next_bc.bet.current_payout = result[:payout].to_i
-      next_bc.bet.current_weight = result[:weight].to_i
-      next_bc.bet.reel_combination_id = result[:reel_combination_id]
+      next_bc.bet.current_payout = reel_combination[:payout].to_i
+      next_bc.bet.current_weight = reel_combination[:weight].to_i
+      next_bc.bet.reel_combination_id = reel_combination[:id].to_i
 
       bc.next = next_bc
 
       next_bc.save!
       bc.save!
+
+      output_values total_bet, balance_change.balance, reel_combination[:reels], next_bc.balance, next_bc.change
     end
-    output_values total_bet, balance_change.balance, reels, next_bc.balance, next_bc.change
   end
   def output_values total_bet, previous_balance, reels, next_balance, payout
     before_payout = lowest_possible_balance_before_payout(total_bet, previous_balance).to_d

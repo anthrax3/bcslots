@@ -30,7 +30,8 @@ class ReelCombination < ActiveRecord::Base
       .collect do |rc|
         {:weight => rc.conditional_reel_combination.weight,
          :payout => rc.conditional_reel_combination.payout,
-         :reels =>  [rc.first.reel, rc.second.reel, rc.third.reel]
+         :reels => [rc.first.reel, rc.second.reel, rc.third.reel],
+         :id => rc.id
         }
       end
     end
