@@ -1,0 +1,19 @@
+1) expose endpoint, push addresses to that
+pros: cheap (0 dollars)
+cons: application split into more than one piece
+could possibly run out if worker is not running
+
+2) delayed job polling
+pros : safest, "most correct" solution
+cons : most expensive, ~35 per environment
+
+3) delayed job on callback
+mix between one and two (cheaper and one app)
+
+4) event machine?
+
+5) node?
+
+6) in database?
+
+7) thread?
