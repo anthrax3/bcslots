@@ -27,6 +27,7 @@ gem 'jquery-cookie-rails'
 
 group :development do
   gem 'pry'
+  gem 'pry-rails'
   gem 'spin'
 
   gem 'pry-debugger'
