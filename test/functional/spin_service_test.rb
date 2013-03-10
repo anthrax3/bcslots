@@ -67,7 +67,8 @@ class SpinServiceTest < ActiveSupport::TestCase
       payout += s.get_random_reel_combination[:payout]
     end
     expected_value = payout.to_f / trials
-    assert (expected_value < 0), "expected value is #{expected_value}"
+    puts "expected value is #{expected_value}"
+    assert (expected_value < 0)
   end
 end
 #TODO: move to functional

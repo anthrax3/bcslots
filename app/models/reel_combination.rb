@@ -5,13 +5,17 @@ class ReelCombination < ActiveRecord::Base
   belongs_to :conditional_reel_combination
 
   after_commit do
-    Rails.cache.delete ReelCombination.reel_combinations_cache_key
+    ReelCombination.clear_cache
   end
 
   def self.weighted_reel_combinations_cache_key
     'weighted_reel_combinations'
   end
 
+  def self.clear_cache
+    Rails.cache.delete ReelCombination.reel_combinations_cache_key
+    Rails.cache.delete ReelCombination.weighted_reel_combinations_cache_key
+  end
   def self.reel_combinations_cache_key
     'reel_combinations'
   end
