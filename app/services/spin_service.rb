@@ -22,7 +22,6 @@ class SpinService
     .newest_for_user_with_public_id(public_id.to_s)
     .select('balance_changes.*')
     .first
-    .try(:attributes)
   end
   def valid_balance_change? balance_change
     not balance_change.nil?
