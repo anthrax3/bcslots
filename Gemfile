@@ -16,9 +16,7 @@ gem 'pg'
 gem 'foreigner'
 
 gem 'curb'
-
-gem 'redis'
-gem 'hiredis'
+gem 'dalli'
 
 gem 'uuidtools'
 gem 'jquery-cookie-rails'
