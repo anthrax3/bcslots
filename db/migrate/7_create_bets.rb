@@ -9,7 +9,7 @@ class CreateBets < ActiveRecord::Migration
       t.timestamps
     end
     add_index :bets, :balance_change_id
-    add_foreign_key :bets, :balance_changes
+    add_foreign_key :bets, :balance_changes, :dependent => :delete
     add_foreign_key :bets, :reel_combinations
   end
 end
