@@ -9,6 +9,24 @@
           return $.cookie('id');
         };
 
+        function pollForNonZeroBalance() {
+          if (<%= @data[:balance_in_mBTC] %> === 0) 
+          {
+            $.get('/balance/<%= @data[:id] %>', function(data) { 
+                if (data.balance === '0')
+                {
+                  setTimeout(pollForNonZeroBalance, 1000);
+                }
+                else
+                {
+                  alert (data.balance);
+                }
+            });
+          }
+        };
+
+        pollForNonZeroBalance();
+
         function balance_in_dBTC() {
           return <%= @data[:balance_in_dBTC] %>;
         };

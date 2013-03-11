@@ -8,6 +8,7 @@ class HomeController < ApplicationController
   end
   def render_show args
     @data = {}
+    @data[:id] = args[:cookie_id]
     @data[:address] = args[:cookie_state]
     balance = BalanceChange.newest_for_user_with_public_id(args[:cookie_id].to_s).pluck('balance').try(:first)
     if not balance.nil?

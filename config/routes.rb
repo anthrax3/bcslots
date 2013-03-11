@@ -4,6 +4,7 @@ BcslotsRails::Application.routes.draw do
   #
   match '/spin' => 'spin#create', :via => :post
   match '/blockchain_info_callback' => 'blockchain_info_callback#show', :via => :get 
+  match '/balance/:id' => 'balance#show', :via => :get 
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
