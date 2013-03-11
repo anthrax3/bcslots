@@ -64,9 +64,12 @@ ActiveRecord::Schema.define(:version => 9) do
     t.string   "transaction_hash",       :null => false
     t.string   "input_transaction_hash", :null => false
     t.integer  "confirmations",          :null => false
+    t.integer  "balance_change_id",      :null => false
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
   end
+
+  add_index "deposits", ["balance_change_id"], :name => "index_deposits_on_balance_change_id"
 
   create_table "reel_combinations", :force => true do |t|
     t.integer  "first_id",                        :null => false
@@ -103,8 +106,10 @@ ActiveRecord::Schema.define(:version => 9) do
   add_foreign_key "balance_changes", "balance_changes", :name => "balance_changes_next_id_fk", :column => "next_id"
   add_foreign_key "balance_changes", "users", :name => "balance_changes_user_id_fk"
 
-  add_foreign_key "bets", "balance_changes", :name => "bets_balance_change_id_fk"
+  add_foreign_key "bets", "balance_changes", :name => "bets_balance_change_id_fk", :dependent => :delete
   add_foreign_key "bets", "reel_combinations", :name => "bets_reel_combination_id_fk"
+
+  add_foreign_key "deposits", "balance_changes", :name => "deposits_balance_change_id_fk", :dependent => :delete
 
   add_foreign_key "reel_combinations", "conditional_reel_combinations", :name => "reel_combinations_conditional_reel_combination_id_fk"
   add_foreign_key "reel_combinations", "reels", :name => "reel_combinations_first_id_fk", :column => "first_id"

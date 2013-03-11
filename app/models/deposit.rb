@@ -1,3 +1,3 @@
 class Deposit < ActiveRecord::Base
-  belongs_to :balance_change, :dependent => :delete_all
+  belongs_to :balance_change, :dependent => :delete
 end
