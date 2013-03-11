@@ -1,9 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Main</title>
-<script type="text/javascript" src="/swfobject.js"></script>
 <script type="text/javascript">
         function getIdFromCookie() {
           return $.cookie('id');
@@ -12,25 +6,6 @@
         function getCSRFToken() {
           return '<%= form_authenticity_token %>';
         }
-
-        function pollForBalanceChange(balance) {
-          if (balance  === 0) 
-          {
-            $.get('/balance/<%= @data[:id] %>', function(data) { 
-                if (swf_content.setToNewBalance === undefined || data.balance_in_mBTC === '0')
-                {
-                  setTimeout(function() { pollForBalanceChange(0); }, 1000);
-                }
-                else
-                {
-                  swf_content.setToNewBalance(data);
-                }
-            });
-          }
-        };
-
-        $(function() { pollForBalanceChange(<%= @data[:balance_in_mBTC] %>); });
-
 
         function balance_in_dBTC() {
           return <%= @data[:balance_in_dBTC] %>;
@@ -63,12 +38,8 @@
         swfobject.embedSWF("<%= asset_path 'slot_machine.swf' %>", "flashcontent", "100%", "100%", "8.0.0", false, flashvars, params, attributes);
 
 </script>
-<link rel="stylesheet" type="text/css" href="/main.css" />
 </head>
 <body style="background-color:#FFF; background-image:url('<%= asset_path 'background.png' %>');">
-  <div style="background-color:#2D2D2D; width:100%; height:29px; font-size: 13px; line-height:27px; font-family:arial, sans-serif; color:#FFF; font-weight:bold; text-align:center">
-    <%= @data[:address] %>
-  </div>
 <div id="flashcontent">
 	<div id="altcontent">
 		<h3>Wrong version or	no version of Flash detected</h3>

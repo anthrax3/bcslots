@@ -1,0 +1,1 @@
+../../../flash/slot_machine/swfobject.js
