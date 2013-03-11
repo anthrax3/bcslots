@@ -35,6 +35,7 @@
 	spinSoundVolume="35" 
 	stopSoundVolume="35" 
 	coinSoundVolume="60" 
+	depositSoundVolume="60" 
 	handleSoundVolume="50" 
 	winnerSoundVolume="40">
 </globals>
