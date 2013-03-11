@@ -1,5 +1,5 @@
 class BalanceChange < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, :dependent => :delete
   belongs_to :balance_change_type
   has_one :bet
   has_one :deposit

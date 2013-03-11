@@ -9,6 +9,10 @@
           return $.cookie('id');
         };
 
+        function getCSRFToken() {
+          return '<%= form_authenticity_token %>';
+        }
+
         function pollForNonZeroBalance() {
           if (<%= @data[:balance_in_mBTC] %> === 0) 
           {

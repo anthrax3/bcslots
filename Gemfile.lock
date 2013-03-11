@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: ssh://morhovich@morhovich.com/home/morhovich/human_id
-  revision: 357e23294a4e04d4d57c59f8db89764e3e708484
+  revision: 74debf1c5c54bf347d063fd3b59b47dbd4e1531e
   specs:
     human_id (0.0.1)
 

@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 9) do
 
   add_foreign_key "balance_changes", "balance_change_types", :name => "balance_changes_balance_change_type_id_fk"
   add_foreign_key "balance_changes", "balance_changes", :name => "balance_changes_next_id_fk", :column => "next_id"
-  add_foreign_key "balance_changes", "users", :name => "balance_changes_user_id_fk"
+  add_foreign_key "balance_changes", "users", :name => "balance_changes_user_id_fk", :dependent => :delete
 
   add_foreign_key "bets", "balance_changes", :name => "bets_balance_change_id_fk", :dependent => :delete
   add_foreign_key "bets", "reel_combinations", :name => "bets_reel_combination_id_fk"

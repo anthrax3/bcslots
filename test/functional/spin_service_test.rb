@@ -61,13 +61,14 @@ class SpinServiceTest < ActiveSupport::TestCase
   test 'get_random_reel_combination has expected value < 0' do
     s = SpinService.new
     payout = 0
-    trials = 1000
+    trials = 1000000
     trials.times do |i|
-      puts "trial #{i}"
       payout += s.get_random_reel_combination[:payout]
+      expected_value = payout.to_f / (i + 1)
+      puts "trial #{i}, expected value is #{expected_value}"
     end
-    expected_value = payout.to_f / trials
-    puts "expected value is #{expected_value}"
+      expected_value = payout.to_f / trials
+      puts "expected value is #{expected_value}"
     assert (expected_value < 0)
   end
 end
