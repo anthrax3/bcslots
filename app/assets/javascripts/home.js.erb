@@ -18,7 +18,7 @@ $(function() {
 
   pollForBalanceChange = function(balance) {
     if (balance  === 0) {
-      $.get('/balance/<%= 'a' %>', function(data) { 
+      $.get('/balance/' + getIdFromCookie(), function(data) { 
         if (swf_content.setToNewBalance === undefined || data.balance_in_mBTC === '0') {
           setTimeout(function() { pollForBalanceChange(0); }, 1000);
         }
@@ -30,5 +30,5 @@ $(function() {
   };
 
   pollForBalanceChange(balance_in_mBTC());
-  window.swfobject.embedSWF("<%= asset_path 'slot_machine.swf' %>", "flashcontent", "100%", "100%", "8.0.0", false, flashvars, params, attributes);
+  swfobject.embedSWF("<%= asset_path 'slot_machine.swf' %>", "flashcontent", "100%", "100%", "8.0.0", false, flashvars, params, attributes);
 });
