@@ -21,6 +21,8 @@ gem 'dalli'
 gem 'uuidtools'
 gem 'jquery-cookie-rails'
 
+gem "twitter-bootstrap-rails"
+
 group :development do
   gem 'pry'
   gem 'pry-rails'
@@ -35,6 +37,9 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  gem "therubyracer"
+  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
