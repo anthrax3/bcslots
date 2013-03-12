@@ -2,7 +2,7 @@ class NewUserJob
   include BlockchainInfoRestClient::Rails::GenerateReceivingAddress
   include HumanId
   def perform
-    buffer_size = Rails.application.config.jobs.new_addresses.buffer_size
+    buffer_size = Rails.application.config.jobs.new_user.buffer_size
     current_size = User.where(:active => false).limit(buffer_size).count
     while (current_size < buffer_size) do
       Rails.logger.info "NewUserJob: #{current_size} available users."

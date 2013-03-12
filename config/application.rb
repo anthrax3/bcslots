@@ -62,9 +62,8 @@ module BcslotsRails
     config.assets.version = '1.0'
 
     config.jobs = ActiveSupport::OrderedOptions.new
-    config.jobs.new_addresses = ActiveSupport::OrderedOptions.new
-    config.jobs.new_addresses.queue_name = :new_addresses
-    config.jobs.new_addresses.buffer_size = 10
+    config.jobs.new_user = ActiveSupport::OrderedOptions.new
+    config.jobs.new_user.buffer_size = 10
     
     config.blockchain_info_rest_client = ActiveSupport::OrderedOptions.new
     config.blockchain_info_rest_client.address = '13wpvosrDc25KDbBGmj3sFA5EaoGzVi8hw'

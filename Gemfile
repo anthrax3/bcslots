@@ -23,6 +23,7 @@ gem 'jquery-cookie-rails'
 
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'workless'
 
 gem "twitter-bootstrap-rails"
 

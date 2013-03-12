@@ -5,7 +5,11 @@ class User < ActiveRecord::Base
 
 
   def enqueue_new_user_job
-    Delayed::Job.enqueue NewUserJob.new
+    buffer_size = Rails.application.config.jobs.new_user.buffer_size
+    current_size = User.where(:active => false).limit(buffer_size).count
+    if current_size < buffer_size
+      Delayed::Job.enqueue NewUserJob.new
+    end
     true
   end
 
