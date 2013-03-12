@@ -21,6 +21,9 @@ gem 'dalli'
 gem 'uuidtools'
 gem 'jquery-cookie-rails'
 
+gem 'delayed_job_active_record'
+gem 'daemons'
+
 gem "twitter-bootstrap-rails"
 
 group :development do
