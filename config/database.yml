@@ -17,9 +17,3 @@ test:
   host: localhost
   database: bcslots_test
   username: user
-
-production:
-  adapter: postgresql
-  host: localhost
-  database: bcslots
-  username: user
