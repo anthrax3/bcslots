@@ -20,7 +20,7 @@ module HumanId
     base ** maximum_length
   end
   def random_number n
-    #SecureRandom.random_number n
+    SecureRandom.random_number n
   end
   def random_between_lower_and_upper_bound
     random_number(upper_random_bound - lower_random_bound)
