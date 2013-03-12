@@ -1,5 +1,3 @@
-require 'SecureRandom'
-
 class SpinController < ApplicationController
   respond_to :xml
   def create 

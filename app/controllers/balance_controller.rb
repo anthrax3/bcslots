@@ -1,5 +1,3 @@
-require 'SecureRandom'
-
 class BalanceController < ApplicationController
   respond_to :json
   def show
