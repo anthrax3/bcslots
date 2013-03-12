@@ -3,7 +3,7 @@
 class SpinService
   def get_random_reel_combination
     rcs = ReelCombination.weighted_reel_combinations
-    pos = SecureRandom.random_number rcs.size
+   # pos = SecureRandom.random_number rcs.size
     rcs[pos]
   end
   def execute public_id, credits, bet_value
