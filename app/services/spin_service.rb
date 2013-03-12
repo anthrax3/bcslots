@@ -1,4 +1,4 @@
-require 'SecureRandom'
+#require 'SecureRandom'
 
 class SpinService
   def get_random_reel_combination

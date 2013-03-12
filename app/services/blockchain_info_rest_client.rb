@@ -1,7 +1,3 @@
-require 'erb'
-require 'json'
-require 'curb'
-
 module BlockchainInfoRestClient
   module Rails
     module Settings

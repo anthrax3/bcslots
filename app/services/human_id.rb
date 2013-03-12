@@ -1,4 +1,4 @@
-require 'securerandom'
+#require 'securerandom'
 
 module HumanId
   def maximum_length
