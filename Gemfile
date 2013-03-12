@@ -10,6 +10,7 @@ gem 'pg'
 gem 'foreigner'
 
 gem 'curb'
+gem 'memcachier'
 gem 'dalli'
 
 gem 'uuidtools'
