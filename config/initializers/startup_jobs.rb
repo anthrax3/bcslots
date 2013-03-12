@@ -1,1 +1,1 @@
-Delayed::Job.enqueue NewUserJob.new
+#Delayed::Job.enqueue NewUserJob.new
