@@ -52,8 +52,8 @@ module BlockchainInfoRestClient
               '127.0.0.1'
             end
           end
-          b
         end
+        b
       end
       def _set_up_callback_args
         args = {}
