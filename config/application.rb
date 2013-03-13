@@ -68,8 +68,8 @@ module BcslotsRails
     
     config.blockchain_info_rest_client = ActiveSupport::OrderedOptions.new
     config.blockchain_info_rest_client.address = '13wpvosrDc25KDbBGmj3sFA5EaoGzVi8hw'
-    config.blockchain_info_rest_client.secret_token = 'hi'
+    config.blockchain_info_rest_client.secret_token = '60631f50f4e08ac21915bfd71a58afad22ac16f'
     config.blockchain_info_rest_client.anonymous = false
-    config.blockchain_info_rest_client.callback_address = 'http://www.google.com'
+    config.blockchain_info_rest_client.callback_address = 'http://sleepy-citadel-5442.herokuapp.com/blockchain_info_callback'
   end
 end
