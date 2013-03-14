@@ -1,11 +1,10 @@
 class BlockchainInfoCallbackController < ApplicationController
   include BlockchainInfoRestClient::Rails::Callback
   def show
-    puts 'entering callback'
-    puts params
     handle_blockchain_info_callback.call{|args|
-      puts 'callback successful'
       ActiveRecord::Base.transaction do
+        puts 'in callback'
+        puts args
         u = User.where(:address => args[:input_address]).first!
         bc = BalanceChange
         .newest_for_user_with_public_id(u.public_id.to_s)

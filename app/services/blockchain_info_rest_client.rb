@@ -124,7 +124,6 @@ module BlockchainInfoRestClient
         '*ok*'
       end
       def call args
-        puts args
         secret_token = args[:secret_token]
         address = args[:destination_address]
 
