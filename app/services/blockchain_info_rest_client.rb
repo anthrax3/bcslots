@@ -127,17 +127,14 @@ module BlockchainInfoRestClient
         puts args
         secret_token = args[:secret_token]
         address = args[:destination_address]
-        test = args[:test]
 
         requester_ip_address = args[:requester_ip_address]
         incoming_secret_token = args[:incoming_secret_token]
         destination_address = args[:incoming_destination_address]
-        test = args[:test]
 
         if (blockchain_info_ip_address == requester_ip_address) and
           (incoming_secret_token == secret_token) and
-          (address == destination_address) and
-          (test == 'false')
+          (address == destination_address)
           response_for_succesful_requester
         else
           nil
