@@ -1,6 +1,4 @@
-<% content_for :address do %>
-  <a href="#" data-toggle="modal" data-target="#addressModal"><%= @data[:address] %></a>
-<% end %>
+<% content_for(:address) {@data[:address]} %> 
 
 
 <script type="text/javascript">
