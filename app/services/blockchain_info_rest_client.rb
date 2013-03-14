@@ -118,7 +118,7 @@ module BlockchainInfoRestClient
     end
     class BlockchainInfoCallback
       def blockchain_info_ip_address
-        '91.203.74.202'
+        '91.223.16.20'
       end
       def response_for_succesful_requester
         '*ok*'
