@@ -11,7 +11,7 @@ class CreateBalanceChanges < ActiveRecord::Migration
     end
     add_index :balance_changes, [:user_id, :next_id], :unique => true
     add_foreign_key :balance_changes, :users, :dependent => :delete
-    add_foreign_key :balance_changes, :balance_change_types
+    add_foreign_key :balance_changes, :balance_change_types, :dependent => :delete
     add_foreign_key(:balance_changes, :balance_changes, column: 'next_id')
   end
 end

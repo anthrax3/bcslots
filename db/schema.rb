@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
+ActiveRecord::Schema.define(:version => 11) do
 
   create_table "allowed_bets", :force => true do |t|
     t.decimal  "allowed_bet", :precision => 16, :scale => 8, :null => false
@@ -87,6 +87,16 @@ ActiveRecord::Schema.define(:version => 10) do
 
   add_index "deposits", ["balance_change_id"], :name => "index_deposits_on_balance_change_id"
 
+  create_table "provably_fair_outcomes", :force => true do |t|
+    t.integer  "user_id",             :null => false
+    t.integer  "reel_combination_id", :null => false
+    t.string   "salt"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "provably_fair_outcomes", ["user_id"], :name => "index_provably_fair_outcomes_on_user_id", :unique => true
+
   create_table "reel_combinations", :force => true do |t|
     t.integer  "first_id",                        :null => false
     t.integer  "second_id",                       :null => false
@@ -126,6 +136,9 @@ ActiveRecord::Schema.define(:version => 10) do
   add_foreign_key "bets", "reel_combinations", :name => "bets_reel_combination_id_fk"
 
   add_foreign_key "deposits", "balance_changes", :name => "deposits_balance_change_id_fk", :dependent => :delete
+
+  add_foreign_key "provably_fair_outcomes", "reel_combinations", :name => "provably_fair_outcomes_reel_combination_id_fk"
+  add_foreign_key "provably_fair_outcomes", "users", :name => "provably_fair_outcomes_user_id_fk", :dependent => :delete
 
   add_foreign_key "reel_combinations", "conditional_reel_combinations", :name => "reel_combinations_conditional_reel_combination_id_fk"
   add_foreign_key "reel_combinations", "reels", :name => "reel_combinations_first_id_fk", :column => "first_id"
