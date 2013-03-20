@@ -14,9 +14,10 @@ class HomeController < ApplicationController
     @data = {}
     @data[:id] = args[:cookie_id]
     @data[:address] = args[:cookie_state]
-    balance = BalanceChange.newest_for_user_with_public_id(args[:cookie_id].to_s).pluck('balance').try(:first)
-    if not balance.nil?
-      @data[:next_hash] = ProvablyFairOutcome.where(:user_id => balance.user_id).first!.hash
+    balance_change = BalanceChange.newest_for_user_with_public_id(args[:cookie_id].to_s).try(:first)
+    if not balance_change.nil?
+      balance = balance_change.balance
+      @data[:next_hash] = ProvablyFairOutcome.where(:user_id => balance_change.user_id).first!.to_hash_for_user
       @data[:balance_in_dBTC] = (balance * 10).to_i.to_s;
       @data[:balance_in_cBTC] = (balance * 100).to_i.to_s;
       @data[:balance_in_mBTC] = (balance * 1000).to_i.to_s;

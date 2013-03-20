@@ -36,7 +36,7 @@ class SpinService
         return {:error => 'balance too low for bet'}
       end
 
-      result = get_random_reel_combination bc.user_id
+      result = get_random_reel_combination bc.user_id, user_position.to_i
 
       next_bc = BalanceChange.new
       next_bc.balance_change_type = BalanceChangeType.where(:balance_change_type => 'bet').first!
@@ -54,12 +54,12 @@ class SpinService
       next_bc.save!
       bc.save!
 
-      p = ProvablyFairOutcome.where(:user_id => bc.user_id)
+      p = ProvablyFairOutcome.where(:user_id => bc.user_id).first!
       secret = p.secret
       position = p.position
       p.destroy
 
-      p_next = ProvablyFairOutcome.add_provably_fair_outcome_for_user_id, ReelCombination.weighted_reel_combinations.size
+      p_next = ProvablyFairOutcome.add_provably_fair_outcome_for_user_id bc.user_id, ReelCombination.weighted_reel_combinations.size
       hash = p_next.to_hash_for_user
 
       {

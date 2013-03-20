@@ -16,7 +16,7 @@ $(function() {
     name: "swf_content"
   };
 
-  pollForBalanceChange = function(balance) {
+  var pollForBalanceChange = function(balance) {
     if (balance  === 0) {
       $.get('/balance/' + getIdFromCookie(), function(data) { 
         if (swf_content.setToNewBalance === undefined || data.balance_in_mBTC === '0') {
@@ -28,6 +28,10 @@ $(function() {
       });
     }
   };
+
+  window.setProvablyFair  = function(text){
+    $('#provably_fair').text(text);
+  }
 
   pollForBalanceChange(balance_in_mBTC());
   swfobject.embedSWF("<%= asset_path 'slot_machine.swf' %>", "flashcontent", "100%", "100%", "8.0.0", false, flashvars, params, attributes);
