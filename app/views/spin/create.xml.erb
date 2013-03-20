@@ -35,5 +35,14 @@
   <% if @data[:balance_before_payout_in_mBTC] %>
     balance_before_payout_in_mBTC="<%= @data[:balance_before_payout_in_mBTC] %>"
   <% end %>
+  <% if @data[:next_hash] %>
+    next_hash="<%= @data[:next_hash] %>"
+  <% end %>
+  <% if @data[:secret] %>
+    next_hash="<%= @data[:secret] %>"
+  <% end %>
+  <% if @data[:position] %>
+    next_hash="<%= @data[:position] %>"
+  <% end %>
   >
 </data>

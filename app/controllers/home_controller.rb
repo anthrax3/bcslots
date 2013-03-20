@@ -1,10 +1,14 @@
 class HomeController < ApplicationController
   include SuperSimpleAuth
   def generate_new_cookie_id args
+    ActiveRecord::Base.transaction do
     u = User.an_inactive_user
     u.active = true
     u.save!
+
+    ProvablyFairOutcome.add_provably_fair_outcome_for_user_id u.id, ReelCombination.weighted_reel_combinations.size
     u.public_id
+    end
   end
   def render_show args
     @data = {}
@@ -12,10 +16,12 @@ class HomeController < ApplicationController
     @data[:address] = args[:cookie_state]
     balance = BalanceChange.newest_for_user_with_public_id(args[:cookie_id].to_s).pluck('balance').try(:first)
     if not balance.nil?
+      @data[:next_hash] = ProvablyFairOutcome.where(:user_id => balance.user_id).first!.hash
       @data[:balance_in_dBTC] = (balance * 10).to_i.to_s;
       @data[:balance_in_cBTC] = (balance * 100).to_i.to_s;
       @data[:balance_in_mBTC] = (balance * 1000).to_i.to_s;
     else
+      @data[:next_hash] = ProvablyFairOutcome.joins(:user).where(:users => {:public_id => @data[:id]}).first!.to_hash_for_user
       @data[:balance_in_dBTC] = 0.to_s;
       @data[:balance_in_cBTC] = 0.to_s;
       @data[:balance_in_mBTC] = 0.to_s;

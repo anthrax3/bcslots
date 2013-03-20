@@ -88,11 +88,11 @@ ActiveRecord::Schema.define(:version => 11) do
   add_index "deposits", ["balance_change_id"], :name => "index_deposits_on_balance_change_id"
 
   create_table "provably_fair_outcomes", :force => true do |t|
-    t.integer  "user_id",             :null => false
-    t.integer  "reel_combination_id", :null => false
-    t.string   "salt"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.integer  "user_id",    :null => false
+    t.integer  "position",   :null => false
+    t.string   "secret"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "provably_fair_outcomes", ["user_id"], :name => "index_provably_fair_outcomes_on_user_id", :unique => true
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(:version => 11) do
   add_index "users", ["address"], :name => "index_users_on_address", :unique => true
   add_index "users", ["public_id"], :name => "index_users_on_public_id", :unique => true
 
-  add_foreign_key "balance_changes", "balance_change_types", :name => "balance_changes_balance_change_type_id_fk"
+  add_foreign_key "balance_changes", "balance_change_types", :name => "balance_changes_balance_change_type_id_fk", :dependent => :delete
   add_foreign_key "balance_changes", "balance_changes", :name => "balance_changes_next_id_fk", :column => "next_id"
   add_foreign_key "balance_changes", "users", :name => "balance_changes_user_id_fk", :dependent => :delete
 
@@ -137,7 +137,6 @@ ActiveRecord::Schema.define(:version => 11) do
 
   add_foreign_key "deposits", "balance_changes", :name => "deposits_balance_change_id_fk", :dependent => :delete
 
-  add_foreign_key "provably_fair_outcomes", "reel_combinations", :name => "provably_fair_outcomes_reel_combination_id_fk"
   add_foreign_key "provably_fair_outcomes", "users", :name => "provably_fair_outcomes_user_id_fk", :dependent => :delete
 
   add_foreign_key "reel_combinations", "conditional_reel_combinations", :name => "reel_combinations_conditional_reel_combination_id_fk"
