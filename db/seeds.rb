@@ -75,7 +75,7 @@ reels.each do |first|
       next unless not_exists
       if r == [:cherries, :cherries, :cherries]
         ar.conditional_reel_combination = ConditionalReelCombination.where(:condition => 'cherries cherries cherries').first!
-      elsif reels == [:cherries, :cherries, :bar]
+      elsif r == [:cherries, :cherries, :bar]
         ar.conditional_reel_combination = ConditionalReelCombination.where(:condition => 'cherries cherries bar').first!
       elsif r[0..1] == [:cherries, :cherries]
         ar.conditional_reel_combination = ConditionalReelCombination.where(:condition => 'cherries cherries any').first!
