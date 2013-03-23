@@ -16,7 +16,7 @@ $(function() {
     name: "swf_content"
   };
 
-  var pollForBalanceChange = function(balance) {
+  window.pollForBalanceChange = function(balance) {
     if (balance  === 0) {
       $.get('/balance/' + getIdFromCookie(), function(data) { 
         if (swf_content.setToNewBalance === undefined || data.balance_in_mBTC === '0') {
@@ -31,6 +31,22 @@ $(function() {
 
   window.setProvablyFair  = function(text){
     $('#provably_fair').text(text);
+  }
+
+  window.setLastReelPosition  = function(text){
+    $('#last_reel_position').text(text);
+  }
+
+  window.setSecret = function(text){
+    $('#secret').text(text);
+  }
+
+  window.setCurrentHash = function(text){
+    $('#current_hash').text(text);
+  }
+
+  window.setNextHash = function(text){
+    $('#next_hash').text(text);
   }
 
   pollForBalanceChange(balance_in_mBTC());

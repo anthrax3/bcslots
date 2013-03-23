@@ -36,6 +36,10 @@ class SpinService
         return {:error => 'balance too low for bet'}
       end
 
+      if ProvablyFairOutcome.where(:user_id => bc.user_id).first.nil?
+          ProvablyFairOutcome.add_provably_fair_outcome_for_user_id bc.user_id, ReelCombination.weighted_reel_combinations.size
+      end
+
       result = get_random_reel_combination bc.user_id, user_position.to_i
 
       next_bc = BalanceChange.new
@@ -57,10 +61,11 @@ class SpinService
       p = ProvablyFairOutcome.where(:user_id => bc.user_id).first!
       secret = p.secret
       position = p.position
+      current_hash = p.to_hash_for_user
       p.destroy
 
       p_next = ProvablyFairOutcome.add_provably_fair_outcome_for_user_id bc.user_id, ReelCombination.weighted_reel_combinations.size
-      hash = p_next.to_hash_for_user
+      next_hash = p_next.to_hash_for_user
 
       {
        :previous_balance => bc.balance.to_s, 
@@ -75,7 +80,8 @@ class SpinService
        :balance_before_payout_in_mBTC => (balance_before_payout * 1000).to_i.to_s,
        :secret => secret,
        :position => position,
-       :next_hash => hash
+       :current_hash => current_hash,
+       :next_hash => next_hash
       }
     end
   end

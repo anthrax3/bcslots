@@ -30,6 +30,22 @@
       </div>
     </div>
 
+    <div id="provablyFairModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="modalLabel">Provably Fair</h3>
+      </div>
+      <div class="modal-body" style="width: 90%; margin: 0 auto;">
+        reel position: <span id="last_reel_position"></span><br/>
+        secret: <span id="secret"></span><br/>
+        sha512 hash: <span id="current_hash"></span><br/>
+        next sha512 hash: <span id="next_hash"></span><br/>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -43,7 +59,7 @@
             <ul class="nav">
               <li><%= link_to "help!", "/path2"  %></li>
               <li><a href="#" data-toggle="modal" data-target="#addressModal"><%= @data[:address] %></a></li>
-              <li><a href="#" id="provably_fair" data-toggle="modal" data-target="#addressModal"><%= @data[:next_hash] %></a></li>
+              <li><a href="#" id="provably_fair" data-toggle="modal" data-target="#provablyFairModal"><%= @data[:next_hash] %></a></li>
               <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
           </div><!--/.nav-collapse -->
