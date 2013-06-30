@@ -35,11 +35,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="modalLabel">Provably Fair</h3>
       </div>
-      <div class="modal-body" style="width: 90%; margin: 0 auto;">
-        reel position: <span id="last_reel_position"></span><br/>
-        secret: <span id="secret"></span><br/>
-        sha512 hash: <span id="current_hash"></span><br/>
-        next sha512 hash: <span id="next_hash"></span><br/>
+      <div class="modal-body" style="width: 80%; margin: 0 auto;">
+        <table>
+          <tr><td>add:</td><td> <input value="0" size="2" style="text-align:right; width:32px;"></td></tr>
+          <tr><td>reel position: </td><td><span id="last_reel_position"></span></td></tr>
+          <tr><td>secret: </td><td><span id="secret"></span></td></tr>
+          <tr><td>sha512 hash: </td><td><span id="current_hash"></span></td></tr>
+          <tr><td>next sha512 hash: </td><td><span id="next_hash"></span></td></tr>
+      </table>
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>

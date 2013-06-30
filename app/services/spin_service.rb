@@ -2,8 +2,12 @@
 
 class SpinService
   def get_random_reel_combination user_id, user_position
+    pfo = ProvablyFairOutcome.where(:user_id => user_id).first
+    if pfo.nil?
+      pfo = ProvablyFairOutcome.add_provably_fair_outcome_for_user_id user_id, ReelCombination.weighted_reel_combinations.size
+    end
     rcs = ReelCombination.weighted_reel_combinations
-    our_pos = ProvablyFairOutcome.where(:user_id => user_id).first!.position
+    our_pos = pfo.position
     pos = (user_position + our_pos) % ReelCombination.weighted_reel_combinations.size
     rcs[pos]
   end
@@ -36,9 +40,6 @@ class SpinService
         return {:error => 'balance too low for bet'}
       end
 
-      if ProvablyFairOutcome.where(:user_id => bc.user_id).first.nil?
-          ProvablyFairOutcome.add_provably_fair_outcome_for_user_id bc.user_id, ReelCombination.weighted_reel_combinations.size
-      end
 
       result = get_random_reel_combination bc.user_id, user_position.to_i
 
@@ -68,20 +69,20 @@ class SpinService
       next_hash = p_next.to_hash_for_user
 
       {
-       :previous_balance => bc.balance.to_s, 
-       :balance => next_bc.balance.to_s,
-       :balance_in_dBTC => (next_bc.balance * 10).to_i.to_s,
-       :balance_in_cBTC => (next_bc.balance * 100).to_i.to_s,
-       :balance_in_mBTC => (next_bc.balance * 1000).to_i.to_s,
-       :reels => result[:reels],
-       :payout => next_bc.change.to_s,
-       :balance_before_payout_in_dBTC => (balance_before_payout * 10).to_i.to_s,
-       :balance_before_payout_in_cBTC => (balance_before_payout * 100).to_i.to_s,
-       :balance_before_payout_in_mBTC => (balance_before_payout * 1000).to_i.to_s,
-       :secret => secret,
-       :position => position,
-       :current_hash => current_hash,
-       :next_hash => next_hash
+        :previous_balance => bc.balance.to_s, 
+        :balance => next_bc.balance.to_s,
+        :balance_in_dBTC => (next_bc.balance * 10).to_i.to_s,
+        :balance_in_cBTC => (next_bc.balance * 100).to_i.to_s,
+        :balance_in_mBTC => (next_bc.balance * 1000).to_i.to_s,
+        :reels => result[:reels],
+        :payout => next_bc.change.to_s,
+        :balance_before_payout_in_dBTC => (balance_before_payout * 10).to_i.to_s,
+        :balance_before_payout_in_cBTC => (balance_before_payout * 100).to_i.to_s,
+        :balance_before_payout_in_mBTC => (balance_before_payout * 1000).to_i.to_s,
+        :secret => secret,
+        :position => position,
+        :current_hash => current_hash,
+        :next_hash => next_hash
       }
     end
   end
